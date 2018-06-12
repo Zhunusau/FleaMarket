@@ -1,0 +1,6 @@
+C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Core\bin\Debug\FleaMarket.BusinessLogic.Core.dll
+C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Core\bin\Debug\FleaMarket.BusinessLogic.Core.pdb
+C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Core\obj\Debug\FleaMarket.BusinessLogic.Core.csprojResolveAssemblyReference.cache
+C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Core\obj\Debug\FleaMarket.BusinessLogic.Core.csproj.CoreCompileInputs.cache
+C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Core\obj\Debug\FleaMarket.BusinessLogic.Core.dll
+C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Core\obj\Debug\FleaMarket.BusinessLogic.Core.pdb
