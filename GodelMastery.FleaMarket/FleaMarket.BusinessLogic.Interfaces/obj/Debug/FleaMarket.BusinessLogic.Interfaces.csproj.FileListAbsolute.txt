@@ -1,6 +1,0 @@
-C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Interfaces\bin\Debug\FleaMarket.BusinessLogic.Interfaces.dll
-C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Interfaces\bin\Debug\FleaMarket.BusinessLogic.Interfaces.pdb
-C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Interfaces\obj\Debug\FleaMarket.BusinessLogic.Interfaces.csprojResolveAssemblyReference.cache
-C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Interfaces\obj\Debug\FleaMarket.BusinessLogic.Interfaces.csproj.CoreCompileInputs.cache
-C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Interfaces\obj\Debug\FleaMarket.BusinessLogic.Interfaces.dll
-C:\Users\i.shchetska\FleaMarket\GodelMastery.FleaMarket\FleaMarket.BusinessLogic.Interfaces\obj\Debug\FleaMarket.BusinessLogic.Interfaces.pdb

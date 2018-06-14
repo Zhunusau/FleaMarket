@@ -1,25 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket", "GodelMastery.FleaMarket\GodelMastery.FleaMarket.csproj", "{1EC8A484-9164-49BC-9484-B099D13C6758}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.Web", "GodelMastery.FleaMarket.Web\GodelMastery.FleaMarket.Web.csproj", "{B6A4C389-AB25-4169-95F1-479B54B9D799}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{4CCE84D2-E30F-4E9E-B864-1D7CE7C396B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.DAL", "GodelMastery.FleaMarket.DAL\GodelMastery.FleaMarket.DAL.csproj", "{F0E948F2-92AD-4429-803C-DAFD6F361912}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{183BB2FC-BCFD-453F-A182-CAF1D3AC1D3E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleaMarket.BusinessLogic.Core", "FleaMarket.BusinessLogic.Core\FleaMarket.BusinessLogic.Core.csproj", "{04923131-38FD-4F9B-A163-9E7DA48AB48E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleaMarket.BusinessLogic.Interfaces", "FleaMarket.BusinessLogic.Interfaces\FleaMarket.BusinessLogic.Interfaces.csproj", "{4AA9CCB3-70AC-4F96-B51C-EBD75F7FA122}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleaMarket.DAL.Core", "FleaMarket.DAL.Core\FleaMarket.DAL.Core.csproj", "{844AB5AC-E80B-47B1-947E-CA8649C82B31}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleaMarket.DAL.Interfaces", "FleaMarket.DAL.Interfaces\FleaMarket.DAL.Interfaces.csproj", "{52927E4A-03BE-4F86-8AD0-2349A99D4DC5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleaMarket.DAL.Models", "FleaMarket.DAL.Models\FleaMarket.DAL.Models.csproj", "{428A0119-19C7-418A-B367-A7354FCD9336}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleaMarket.DAL.Repositories", "FleaMarket.DAL.Repositories\FleaMarket.DAL.Repositories.csproj", "{A208CE8D-7CD0-495C-B155-45941262EA52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.BL", "GodelMastery.FleaMarket.BL\GodelMastery.FleaMarket.BL.csproj", "{9EBB1B6F-5AEB-4B67-909F-6AAB3E6B50A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,47 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1EC8A484-9164-49BC-9484-B099D13C6758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1EC8A484-9164-49BC-9484-B099D13C6758}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1EC8A484-9164-49BC-9484-B099D13C6758}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1EC8A484-9164-49BC-9484-B099D13C6758}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04923131-38FD-4F9B-A163-9E7DA48AB48E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04923131-38FD-4F9B-A163-9E7DA48AB48E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04923131-38FD-4F9B-A163-9E7DA48AB48E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04923131-38FD-4F9B-A163-9E7DA48AB48E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AA9CCB3-70AC-4F96-B51C-EBD75F7FA122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AA9CCB3-70AC-4F96-B51C-EBD75F7FA122}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AA9CCB3-70AC-4F96-B51C-EBD75F7FA122}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AA9CCB3-70AC-4F96-B51C-EBD75F7FA122}.Release|Any CPU.Build.0 = Release|Any CPU
-		{844AB5AC-E80B-47B1-947E-CA8649C82B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{844AB5AC-E80B-47B1-947E-CA8649C82B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{844AB5AC-E80B-47B1-947E-CA8649C82B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{844AB5AC-E80B-47B1-947E-CA8649C82B31}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52927E4A-03BE-4F86-8AD0-2349A99D4DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52927E4A-03BE-4F86-8AD0-2349A99D4DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52927E4A-03BE-4F86-8AD0-2349A99D4DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52927E4A-03BE-4F86-8AD0-2349A99D4DC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{428A0119-19C7-418A-B367-A7354FCD9336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{428A0119-19C7-418A-B367-A7354FCD9336}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{428A0119-19C7-418A-B367-A7354FCD9336}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{428A0119-19C7-418A-B367-A7354FCD9336}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A208CE8D-7CD0-495C-B155-45941262EA52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A208CE8D-7CD0-495C-B155-45941262EA52}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A208CE8D-7CD0-495C-B155-45941262EA52}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A208CE8D-7CD0-495C-B155-45941262EA52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A4C389-AB25-4169-95F1-479B54B9D799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A4C389-AB25-4169-95F1-479B54B9D799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A4C389-AB25-4169-95F1-479B54B9D799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A4C389-AB25-4169-95F1-479B54B9D799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0E948F2-92AD-4429-803C-DAFD6F361912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0E948F2-92AD-4429-803C-DAFD6F361912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0E948F2-92AD-4429-803C-DAFD6F361912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0E948F2-92AD-4429-803C-DAFD6F361912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBB1B6F-5AEB-4B67-909F-6AAB3E6B50A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBB1B6F-5AEB-4B67-909F-6AAB3E6B50A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBB1B6F-5AEB-4B67-909F-6AAB3E6B50A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBB1B6F-5AEB-4B67-909F-6AAB3E6B50A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{04923131-38FD-4F9B-A163-9E7DA48AB48E} = {4CCE84D2-E30F-4E9E-B864-1D7CE7C396B2}
-		{4AA9CCB3-70AC-4F96-B51C-EBD75F7FA122} = {4CCE84D2-E30F-4E9E-B864-1D7CE7C396B2}
-		{844AB5AC-E80B-47B1-947E-CA8649C82B31} = {183BB2FC-BCFD-453F-A182-CAF1D3AC1D3E}
-		{52927E4A-03BE-4F86-8AD0-2349A99D4DC5} = {183BB2FC-BCFD-453F-A182-CAF1D3AC1D3E}
-		{428A0119-19C7-418A-B367-A7354FCD9336} = {183BB2FC-BCFD-453F-A182-CAF1D3AC1D3E}
-		{A208CE8D-7CD0-495C-B155-45941262EA52} = {183BB2FC-BCFD-453F-A182-CAF1D3AC1D3E}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1656853C-E1B3-4957-97C3-59F29794716E}
+		SolutionGuid = {8A1AE7B9-E27D-4D3C-9F75-4ADB0E77AF43}
 	EndGlobalSection
 EndGlobal
