@@ -47,12 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\UnitOfWork.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Models\IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Models\Entities\" />
     <Folder Include="Models\Enums\" />
     <Folder Include="Models\Mappings\" />
