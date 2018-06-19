@@ -1,8 +1,5 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
-using System;
-using System.Reflection;
-using System.Web;
 
 namespace GodelMastery.FleaMarket.Web.Modules
 {
