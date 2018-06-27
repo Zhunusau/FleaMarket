@@ -3,7 +3,7 @@ using GodelMastery.FleaMarket.DAL.Core;
 using GodelMastery.FleaMarket.DAL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Repositories;
 
-namespace GodelMastery.FleaMarket.Web.Modules
+namespace GodelMastery.FleaMarket.Web.AutofacModules
 {
     public class RepositoryModule : Module
     {

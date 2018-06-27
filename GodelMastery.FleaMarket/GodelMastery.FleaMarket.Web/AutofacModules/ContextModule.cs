@@ -5,7 +5,7 @@ using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace GodelMastery.FleaMarket.Web.Modules
+namespace GodelMastery.FleaMarket.Web.AutofacModules
 {
     public class ContextModule : Module
     {
