@@ -2,7 +2,5 @@
 
 namespace GodelMastery.FleaMarket.DAL.Models.Entities
 {
-    public class ApplicationRole : IdentityRole
-    {
-    }
+    public class ApplicationRole : IdentityRole { }
 }

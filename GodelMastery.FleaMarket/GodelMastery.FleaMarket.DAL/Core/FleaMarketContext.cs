@@ -18,7 +18,6 @@ namespace GodelMastery.FleaMarket.DAL.Core
             modelBuilder.Configurations.Add(new ApplicationUserMap());
             modelBuilder.Configurations.Add(new FilterMap());
             modelBuilder.Configurations.Add(new LotMap());
-            modelBuilder.Configurations.Add(new UserProfileMap());
             base.OnModelCreating(modelBuilder);
         }
     }

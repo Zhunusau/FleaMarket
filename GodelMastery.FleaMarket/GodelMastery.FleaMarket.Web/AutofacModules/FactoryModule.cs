@@ -15,12 +15,17 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
             builder
                 .RegisterType<FilterModelFactory>()
                 .As<IFilterModelFactory>()
-                .InstancePerRequest();
+                .SingleInstance();
+
+            builder
+                .RegisterType<UserDtoModelFactory>()
+                .As<IUserDtoModelFactory>()
+                .SingleInstance();
 
             builder
                 .RegisterType<FilterViewModelFactory>()
                 .As<IFilterViewModelFactory>()
-                .InstancePerRequest();
+                .SingleInstance();
         }
     }
 }

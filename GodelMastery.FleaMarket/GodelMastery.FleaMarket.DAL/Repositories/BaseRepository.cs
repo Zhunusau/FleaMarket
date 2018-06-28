@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
+using GodelMastery.FleaMarket.DAL.Core;
 using GodelMastery.FleaMarket.DAL.Interfaces;
 
 namespace GodelMastery.FleaMarket.DAL.Repositories

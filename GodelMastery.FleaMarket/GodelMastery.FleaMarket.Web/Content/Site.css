@@ -44,6 +44,7 @@ textarea {
     width: 100%;
     height: 100vh;
     background: center no-repeat;
+    position: fixed;
     background: url('../Images/honey-caranzo-349145-unsplash.jpg');
     background-size: cover;
     color: #ffffff;

@@ -11,7 +11,6 @@ namespace GodelMastery.FleaMarket.DAL.Interfaces
         UserManager<ApplicationUser> UserManager { get; }
         IBaseRepository<Filter> Filters { get; }
         IBaseRepository<Lot> Lots { get; }
-        IBaseRepository<UserProfile> UserProfiles { get; }
         Task SaveChanges();
         void RollBack();
     }

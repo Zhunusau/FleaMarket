@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings;
+using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
 using GodelMastery.FleaMarket.BL.Services;
 
 namespace GodelMastery.FleaMarket.Web.AutofacModules
@@ -11,6 +13,16 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
                 .RegisterAssemblyTypes(typeof(BaseService).Assembly)
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
+
+            builder
+                .RegisterType<EmailProvider>()
+                .As<IEmailProvider>()
+                .SingleInstance();
+
+            builder
+                .RegisterType<ConfigProvider>()
+                .As<IConfigProvider>()
+                .SingleInstance();
 
             base.Load(builder);
         }

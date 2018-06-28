@@ -4,6 +4,8 @@ using System.Data.Entity;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.DataProtection;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace GodelMastery.FleaMarket.Web.AutofacModules
 {
@@ -20,6 +22,8 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
 
             builder
                 .RegisterType<UserManager<ApplicationUser>>()
+                .WithProperty("UserTokenProvider",
+                    new DataProtectorTokenProvider<ApplicationUser>(GetDpapiDataProtectionProvider().Create("IdentityProvider")))
                 .AsSelf()
                 .InstancePerRequest();
 
@@ -29,16 +33,23 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
                 .InstancePerRequest();
 
             builder
-                .RegisterType<RoleStore<ApplicationRole>>()
-                .UsingConstructor(typeof(DbContext))
-                .As<IRoleStore<ApplicationRole, string>>()
-                .InstancePerRequest();
-
-            builder
                 .RegisterType<UserStore<ApplicationUser>>()
                 .UsingConstructor(typeof(DbContext))
                 .As<IUserStore<ApplicationUser>>()
                 .InstancePerRequest();
+
+            builder
+                .RegisterType<RoleStore<ApplicationRole>>()
+                .UsingConstructor(typeof(DbContext))
+                .As<IRoleStore<ApplicationRole, string>>()
+                .InstancePerRequest();
         }
+
+        #region Configurations
+        private DpapiDataProtectionProvider GetDpapiDataProtectionProvider()
+        {
+            return new DpapiDataProtectionProvider("GodelMastery.FleaMarket.Provider");
+        }
+        #endregion
     }
 }

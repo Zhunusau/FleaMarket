@@ -41,17 +41,13 @@
                     else
                     {
                         <li>@Html.ActionLink("Sign In", "Index", "Home", null, new { @class = "navbar-brand" })</li>
-                        <li>@Html.ActionLink("Sign Up", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Sign Up", "SignUp", "Account", null, new { @class = "navbar-brand" })</li>
                     }
                 </ul>
             </div>
         </div>
     </div>
-
-    <div class="body-content">
-        @RenderBody()
-    </div>
-
+    @RenderBody()
     <div class="text-center navbar-fixed-bottom">
         <footer>
             <div class="col-md-4">
@@ -65,7 +61,6 @@
             </div>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

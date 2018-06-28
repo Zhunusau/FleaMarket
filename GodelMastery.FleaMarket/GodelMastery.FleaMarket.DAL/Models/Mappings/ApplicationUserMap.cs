@@ -7,8 +7,14 @@ namespace GodelMastery.FleaMarket.DAL.Models.Mappings
     {
         public ApplicationUserMap()
         {
-            HasOptional(x => x.User)
-                .WithRequired(x => x.ApplicationUser);
+
+            Property(x => x.FirstName)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            Property(x => x.LastName)
+                .IsRequired()
+                .HasMaxLength(255);
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model GodelMastery.FleaMarket.Web.ViewModels.SignUpViewModel
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_LayoutWithoutFooter.cshtml";
+}
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            @using (@Html.BeginForm("SignUp", "Account", FormMethod.Post, new { @id = "registrationFormId", @class = "form-container" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <h1>Registration</h1>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(x => x.FirstName) } })
+                    <strong>@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })</strong>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(x => x.LastName) } })
+                    <strong>@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })</strong>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email", placeholder = @Html.DisplayNameFor(x => x.Email) } })
+                    <strong>@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })</strong>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", placeholder = @Html.DisplayNameFor(x => x.Password) } })
+                    <strong>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })</strong>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @type = "password", placeholder = @Html.DisplayNameFor(x => x.ConfirmPassword) } })
+                    <strong>@Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })</strong>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Submit</button>
+            }
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    </div>
+</div>

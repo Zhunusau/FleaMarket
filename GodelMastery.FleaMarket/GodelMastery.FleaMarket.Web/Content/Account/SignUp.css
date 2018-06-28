@@ -1,0 +1,23 @@
+﻿body {
+    background: url("https://image.ibb.co/cSjpQT/background.jpg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.form-container h1 {
+    color: #ffffff;
+}
+
+.form-container {
+    border: 0px solid #fff;
+    padding: 50px 60px;
+    margin-top: 20vh;
+    -webkit-box-shadow: -1px 4px 26px 9px rgba(0,0,0,1);
+    -moz-box-shadow: -1px 4px 26px 9px rgba(0,0,0,1);
+    box-shadow: -1px 4px 26px 9px rgba(0,0,0,1);
+}
+
+.text-danger {
+    color: #dc143c
+}

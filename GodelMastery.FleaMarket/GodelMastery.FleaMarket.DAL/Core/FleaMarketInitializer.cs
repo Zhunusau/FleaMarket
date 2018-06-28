@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -15,15 +16,18 @@ namespace GodelMastery.FleaMarket.DAL.Core
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var adminUser = new ApplicationUser
             {
+                FirstName = "Vlad",
+                LastName = "Kuzmich",
                 Email = "admin@test.com",
                 UserName = "admin@test.com"
             };
-            userManager.Create(adminUser, "12345678");
+            userManager.Create(adminUser, "123321");
             var admin = userManager.FindByEmail(adminUser.Email);
             userManager.AddToRole(admin.Id, "Administrator");
-
             var commonUser = new ApplicationUser
             {
+                FirstName = "Vlad",
+                LastName = "Kuzmich",
                 Email = "user@test.com",
                 UserName = "user@test.com"
             };
