@@ -23,6 +23,9 @@ namespace GodelMastery.FleaMarket.Web
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
                       "~/Content/Account/SignUp.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Error").Include(
+                      "~/Content/Error.css"));
         }
     }
 }

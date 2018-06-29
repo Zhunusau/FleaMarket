@@ -1,0 +1,8 @@
+﻿.error-page {
+    background: url("../Images/error.jpg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+}
+.error-page-font{
+    font-size: 50px;
+}
