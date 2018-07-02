@@ -6,6 +6,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.AspNet.Identity.Owin;
+using System.Web;
+using Microsoft.Owin.Security;
 
 namespace GodelMastery.FleaMarket.Web.AutofacModules
 {
@@ -42,6 +44,11 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
                 .RegisterType<RoleStore<ApplicationRole>>()
                 .UsingConstructor(typeof(DbContext))
                 .As<IRoleStore<ApplicationRole, string>>()
+                .InstancePerRequest();
+
+            builder
+                .Register(c => HttpContext.Current.GetOwinContext().Authentication)
+                .As<IAuthenticationManager>()
                 .InstancePerRequest();
         }
 

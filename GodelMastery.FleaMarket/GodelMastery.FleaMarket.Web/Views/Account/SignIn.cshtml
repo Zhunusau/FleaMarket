@@ -1,0 +1,27 @@
+﻿@model GodelMastery.FleaMarket.Web.ViewModels.SignInViewModel
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-4 col-sm-4 col-xs-12"></div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+    @using (@Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @id = "singInFormId", @class = "form-container" }))
+    {
+        <h1>Log In</h1>
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger semiopacity" })   
+        <div class="form-group">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @type = "email", placeholder = @Html.DisplayNameFor(x => x.Email) } })
+            <strong>@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })</strong>
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", placeholder = @Html.DisplayNameFor(x => x.Password) } })
+            <strong>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })</strong>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
+    }
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12"></div>
+

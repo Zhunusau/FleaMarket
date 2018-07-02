@@ -17,5 +17,14 @@ namespace GodelMastery.FleaMarket.Web.Factories.Implementations
                 Role = "User",
             };
         }
+
+        public UserDto CreateUserDto(SignInViewModel signInViewModel)
+        {
+            return new UserDto
+            {
+                Email = signInViewModel.Email,
+                Password = signInViewModel.Password
+            };
+        }
     }
 }

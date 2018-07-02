@@ -35,12 +35,12 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li><a class="navbar-brand" href="">User.Identity.Name</a></li>
-                        <li>@Html.ActionLink("Sign Out", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Sign Out", "SignOut", "Account", null, new { @class = "navbar-brand" })</li>
                         <li class="profile-image"><img class="img-rounded" src="~/Images/Koala.jpg" height="40" alt="Icon" /></li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Sign In", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+                        <li>@Html.ActionLink("Sign In", "SignIn", "Account", null, new { @class = "navbar-brand" })</li>
                         <li>@Html.ActionLink("Sign Up", "SignUp", "Account", null, new { @class = "navbar-brand" })</li>
                     }
                 </ul>

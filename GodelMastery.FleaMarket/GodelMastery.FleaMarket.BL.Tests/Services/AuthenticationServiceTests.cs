@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Core.Helpers;
 using GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings;
@@ -225,6 +226,51 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             //when then
             Assert.AreEqual(actualResult.Succedeed, operatinDetails.Succedeed);
             Assert.AreEqual(actualResult.Message, operatinDetails.Message);
+        }
+
+        [Test]
+        public void Authenticate_With_Null_User_Should_Thow_Exeptions()
+        {
+            //arrange
+            UserDto userDto = null;
+            //when then
+            Assert.ThrowsAsync<ArgumentNullException>(() => underTest.Authenticate(userDto));
+        }
+
+        [Test]
+        public async Task Authenticate_With_Non_Existing_User_Should_Return_TrueAsync()
+        {
+            //arrange
+            var userDto = new UserDto { Email = "NotExist@test.com", Password = "12345678" };
+
+            userManager
+                .Setup(x => x.FindAsync(userDto.Email, userDto.Password))
+                .Returns(Task.FromResult<ApplicationUser>(null));
+            //when
+            var actual = await underTest.Authenticate(userDto);
+            //then
+            Assert.AreEqual(actual, null);
+        }
+
+        [Test]
+        public async Task Authenticate_With_Valid_credentials_Should_Return_TrueAsync()
+        {
+            //arrange
+            var userDto = new UserDto { Email = "user@test.com", Password = "12345678" };
+
+            ApplicationUser user = new ApplicationUser { Email = userDto.Email, PasswordHash = "123" };
+
+            var tt = userManager
+                .Setup(x => x.FindAsync(userDto.Email, userDto.Password))
+                .ReturnsAsync(user);
+
+            userManager
+                .Setup(x => x.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie))
+                .ReturnsAsync(new ClaimsIdentity());
+            //when
+            var actual = await underTest.Authenticate(userDto);
+            //then
+            Assert.True(actual.GetType() == typeof(ClaimsIdentity));
         }
     }
 }

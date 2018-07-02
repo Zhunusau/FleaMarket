@@ -6,5 +6,6 @@ namespace GodelMastery.FleaMarket.Web.Factories.Interfaces
     public interface IUserDtoModelFactory
     {
         UserDto CreateUserDto(SignUpViewModel signUpViewModel);
+        UserDto CreateUserDto(SignInViewModel signInViewModel);
     }
 }

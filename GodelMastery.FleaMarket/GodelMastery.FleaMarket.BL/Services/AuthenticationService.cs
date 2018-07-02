@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Core.Helpers;
 using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
@@ -9,6 +10,7 @@ using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
+using Microsoft.AspNet.Identity;
 using NLog;
 
 namespace GodelMastery.FleaMarket.BL.Services
@@ -90,6 +92,27 @@ namespace GodelMastery.FleaMarket.BL.Services
             await emailProvider.SendMessageAsync(
                 new VerificationMessage(email, SendVerificationLinkHelper.Title, SendVerificationLinkHelper.Subject),
                 new VerificationMessageContext(callBack));
+        }
+        
+        public async Task<ClaimsIdentity> Authenticate(UserDto userDto)
+        {
+            logger.Info($"Cheking credentials for user {userDto.Email}");
+
+            if (userDto == null)
+            {
+                throw new ArgumentNullException(nameof(userDto));
+            }
+
+            ClaimsIdentity claim = null;
+
+            ApplicationUser user = await unitOfWork.UserManager.FindAsync(userDto.Email, userDto.Password);
+
+            if (user != null)
+            {
+                logger.Info($"Created identity for: {userDto.Email}");
+                claim = await unitOfWork.UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            }
+            return claim;
         }
 
         #region PrivateMethods

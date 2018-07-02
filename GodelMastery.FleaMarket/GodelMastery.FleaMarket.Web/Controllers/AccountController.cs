@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
 using GodelMastery.FleaMarket.Web.ViewModels;
+using Microsoft.Owin.Security;
 
 namespace GodelMastery.FleaMarket.Web.Controllers
 {
@@ -11,11 +12,15 @@ namespace GodelMastery.FleaMarket.Web.Controllers
     {
         private readonly IAuthenticationService authenticationService;
         private readonly IUserDtoModelFactory userDtoModelFactory;
-        
-        public AccountController(IAuthenticationService authenticationService, IUserDtoModelFactory userDtoModelFactory)
+        private readonly IAuthenticationManager authenticationManager;
+
+        public AccountController(IAuthenticationService authenticationService, 
+            IUserDtoModelFactory userDtoModelFactory,
+            IAuthenticationManager authenticationManager)
         {
             this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
             this.userDtoModelFactory = userDtoModelFactory ?? throw new ArgumentNullException(nameof(userDtoModelFactory));
+            this.authenticationManager = authenticationManager ?? throw new ArgumentNullException(nameof(authenticationManager));
         }
 
         [HttpGet]
@@ -50,6 +55,47 @@ namespace GodelMastery.FleaMarket.Web.Controllers
                 return View("Error");
             }
             return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult SignIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(SignInViewModel signInViewModel)
+        {
+            var userDto = userDtoModelFactory.CreateUserDto(signInViewModel);
+
+            if (ModelState.IsValid)
+            {
+                var claim = await authenticationService.Authenticate(userDto);
+                if (claim == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid password or email.");
+                }
+                else
+                {
+                    authenticationManager.SignOut();
+                    authenticationManager.SignIn(new AuthenticationProperties
+                    {
+                        IsPersistent = true
+                    }, claim);
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View(signInViewModel);
+        }
+
+        [Authorize]
+        public ActionResult SignOut()
+        {
+            authenticationManager.SignOut();
+            return RedirectToAction("SignIn");
         }
     }
 }
