@@ -205,8 +205,8 @@
     <Compile Include="AutofacModules\FactoryModule.cs" />
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Factories\Implementations\UserDtoModelFactory.cs" />
-    <Compile Include="Factories\Interfaces\IUserDtoModelFactory.cs" />
+    <Compile Include="Factories\Implementations\UserViewModelFactory.cs" />
+    <Compile Include="Factories\Interfaces\IUserViewModelFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,11 +214,14 @@
     <Compile Include="AutofacModules\ControllerModule.cs" />
     <Compile Include="AutofacModules\RepositoryModule.cs" />
     <Compile Include="AutofacModules\ServiceModule.cs" />
+    <Compile Include="Helpers\HtmExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Factories\Implementations\FilterViewModelFactory.cs" />
     <Compile Include="Factories\Interfaces\IFilterViewModelFactory.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\FilterViewModel.cs" />
+    <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Compile Include="ViewModels\SingInViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +229,7 @@
     <Content Include="Content\Account\SignUp.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Filter\Dashboard.css" />
     <Content Include="Content\Error.css" />
     <Content Include="favicon.ico" />
     <Content Include="Images\background.jpg" />
@@ -237,6 +241,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\UserIcons\defaultIcon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -262,6 +267,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Filter\Dashboard.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Shared\_LayoutWithoutFooter.cshtml" />
@@ -270,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Filter\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

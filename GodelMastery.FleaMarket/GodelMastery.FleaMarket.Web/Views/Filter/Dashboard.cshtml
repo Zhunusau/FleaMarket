@@ -1,0 +1,78 @@
+﻿@model GodelMastery.FleaMarket.Web.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using GodelMastery.FleaMarket.Web.Helpers
+<link href="~/Content/Filter/Dashboard.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-md-offset-1">
+            <div class="panel">
+                <div class="panel-heading">
+                    <strong>User info</strong>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                @if (Model.UserInfoViewModel.Icon != null)
+                                {
+                                    @Html.Image(Model.UserInfoViewModel.Icon)
+                                }
+                                else
+                                {
+                                    <img class="img-rounded" src="~/Images/UserIcons/defaultIcon.png" height="100" alt="Icon" />
+                                }
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                <h4><strong>@Model.UserInfoViewModel.FullName</strong></h4>
+                                <p>
+                                    <i class="glyphicon glyphicon-envelope"></i> @Model.UserInfoViewModel.Email
+                                    <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <button type="button" class="btn btn-primary"><strong>Create filter</strong></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="table-responsive">
+                <table class="table table-filter-content">
+                    <thead>
+                        <tr class="dark">
+                            <td class="col-md-2"><strong>Filter name</strong></td>
+                            <td class="col-md-8"><strong>Content</strong></td>
+                            <td class="col-md-2"></td>
+                            <td class="col-md-2"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var filter in @Model.FilterViewModels)
+                        {
+                            <tr>
+                                <td class="col-md-2"><strong>@Html.ActionLink(filter.FilterName, "#", "#")</strong></td>
+                                <td class="col-md-8"><strong>@Html.ActionLink(filter.Content, "#", "#")</strong></td>
+                                <td>
+                                    <div class="col-md-2">
+                                        @Html.ActionLink("Show lots", "#", "#", new { @class = "btn btn-primary btn-sm", type = "button" })
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-md-2">
+                                        @Html.ActionLink("Delete", "#", "#", new { @class = "btn btn-primary btn-sm", type = "button" })
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

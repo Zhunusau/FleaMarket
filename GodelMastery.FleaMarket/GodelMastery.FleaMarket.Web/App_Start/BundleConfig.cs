@@ -21,9 +21,7 @@ namespace GodelMastery.FleaMarket.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/Site.css",
-                      "~/Content/Account/SignIn.css"));
-                      "~/Content/Account/SignUp.css"));
+                      "~/Content/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/Error").Include(
                       "~/Content/Error.css"));

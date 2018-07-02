@@ -4,7 +4,7 @@ using GodelMastery.FleaMarket.Web.ViewModels;
 
 namespace GodelMastery.FleaMarket.Web.Factories.Implementations
 {
-    public class UserDtoModelFactory : IUserDtoModelFactory
+    public class UserViewModelFactory : IUserViewModelFactory
     {
         public UserDto CreateUserDto(SignUpViewModel signUpViewModel)
         {

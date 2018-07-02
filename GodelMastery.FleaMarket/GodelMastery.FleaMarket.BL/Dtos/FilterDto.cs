@@ -3,7 +3,7 @@
     public class FilterDto
     {
         public int Id { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public string FilterName { get; set; }
         public string Content { get; set; }
     }

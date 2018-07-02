@@ -21,7 +21,8 @@ namespace GodelMastery.FleaMarket.DAL.Core
 
         public UnitOfWork(DbContext dbContext, ILifetimeScope lifetimeScope)
         {
-            this.dbContext = dbContext;
+            this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+
             this.lifetimeScope = lifetimeScope;
             UserManager = lifetimeScope
             .Resolve<UserManager<ApplicationUser>>(new ResolvedParameter((pi, ctx) => pi.ParameterType == typeof(UserStore<ApplicationUser>),

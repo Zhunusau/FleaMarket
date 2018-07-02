@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using GodelMastery.FleaMarket.BL.Core.ModelFactories;
-using GodelMastery.FleaMarket.BL.Interfaces;
+using GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations;
+using GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces;
 using GodelMastery.FleaMarket.Web.Factories.Implementations;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
 
@@ -13,13 +13,23 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
             base.Load(builder);
 
             builder
+                .RegisterType<DashboardModelFactory>()
+                .As<IDashboardModelFactory>()
+                .SingleInstance();
+
+            builder
                 .RegisterType<FilterModelFactory>()
                 .As<IFilterModelFactory>()
                 .SingleInstance();
 
             builder
-                .RegisterType<UserDtoModelFactory>()
-                .As<IUserDtoModelFactory>()
+                .RegisterType<UserViewModelFactory>()
+                .As<IUserViewModelFactory>()
+                .SingleInstance();
+
+            builder
+                .RegisterType<UserModelFactory>()
+                .As<IUserModelFactory>()
                 .SingleInstance();
 
             builder

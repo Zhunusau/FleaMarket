@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Core.Helpers;
-using GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings;
 using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.BL.Interfaces;

@@ -11,11 +11,11 @@ namespace GodelMastery.FleaMarket.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthenticationService authenticationService;
-        private readonly IUserDtoModelFactory userDtoModelFactory;
+        private readonly IUserViewModelFactory userDtoModelFactory;
         private readonly IAuthenticationManager authenticationManager;
 
         public AccountController(IAuthenticationService authenticationService, 
-            IUserDtoModelFactory userDtoModelFactory,
+            IUserViewModelFactory userDtoModelFactory,
             IAuthenticationManager authenticationManager)
         {
             this.authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));

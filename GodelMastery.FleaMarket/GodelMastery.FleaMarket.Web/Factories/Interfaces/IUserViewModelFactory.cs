@@ -3,7 +3,7 @@ using GodelMastery.FleaMarket.Web.ViewModels;
 
 namespace GodelMastery.FleaMarket.Web.Factories.Interfaces
 {
-    public interface IUserDtoModelFactory
+    public interface IUserViewModelFactory
     {
         UserDto CreateUserDto(SignUpViewModel signUpViewModel);
         UserDto CreateUserDto(SignInViewModel signInViewModel);
