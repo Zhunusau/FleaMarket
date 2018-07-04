@@ -111,6 +111,7 @@
     <Compile Include="Core\Helpers\EmailHelper\IEmailProvider.cs" />
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\IMessageContext.cs" />
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\NotificationMessageContext.cs" />
+    <Compile Include="Core\Helpers\HtmlParserHelper\IHtmlParserProvider.cs" />
     <Compile Include="Core\Helpers\SendVerificationLinkHelper.cs" />
     <Compile Include="Core\ModelFactories\Implementations\DashboardModelFactory.cs" />
     <Compile Include="Core\ModelFactories\Implementations\FilterModelFactory.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="BusinessModels\DashboardModel.cs" />
     <Compile Include="Dtos\FilterDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Dtos\LotDto.cs" />
     <Compile Include="Core\ModelFactories\Interfaces\IDashboardModelFactory.cs" />
     <Compile Include="Interfaces\IDashboardService.cs" />
     <Compile Include="Core\ModelFactories\Interfaces\IFilterModelFactory .cs" />
@@ -136,12 +138,17 @@
     <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Core\Helpers\HtmlParserHelper\HtmlParserProvider.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\GodelMastery.FleaMarket.DAL\GodelMastery.FleaMarket.DAL.csproj">
       <Project>{F0E948F2-92AD-4429-803C-DAFD6F361912}</Project>
       <Name>GodelMastery.FleaMarket.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GodelMastery.FleaMarket.HtmlParserInterfaces\GodelMastery.FleaMarket.HtmlParserInterfaces.csproj">
+      <Project>{52f2ce43-35af-427b-bfeb-852e8eab5e52}</Project>
+      <Name>GodelMastery.FleaMarket.HtmlParserInterfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

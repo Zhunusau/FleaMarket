@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GodelMastery.FleaMarket.DAL.Models.Entities
+namespace GodelMastery.FleaMarket.BL.Dtos
 {
-    public class Lot : IBaseEntity<int>
+    public class LotDto
     {
         public int Id { get; set; }
         public int FilterId { get; set; }
+        public int SourceId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Location { get; set; }
@@ -13,9 +18,5 @@ namespace GodelMastery.FleaMarket.DAL.Models.Entities
         public byte[] Image { get; set; }
         public DateTime DateOfFound { get; set; }
         public DateTime DateOfUpdate { get; set; }
-
-        public bool Status { get; set; }
-
-        public virtual Filter Filter { get; set; }
     }
 }

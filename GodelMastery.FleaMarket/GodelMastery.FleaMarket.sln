@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.BL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.Web.Tests", "GodelMastery.FleaMarket.Web.Tests\GodelMastery.FleaMarket.Web.Tests.csproj", "{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.HtmlParser", "GodelMastery.FleaMarket.HtmlParser\GodelMastery.FleaMarket.HtmlParser.csproj", "{EDF06629-B960-41CB-A605-4C906F8E719B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.Kufar", "GodelMastery.FleaMarket.Kufar\GodelMastery.FleaMarket.Kufar.csproj", "{63013818-65BA-4F06-AB91-953EE9369128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.HtmlParserInterfaces", "GodelMastery.FleaMarket.HtmlParserInterfaces\GodelMastery.FleaMarket.HtmlParserInterfaces.csproj", "{52F2CE43-35AF-427B-BFEB-852E8EAB5E52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF06629-B960-41CB-A605-4C906F8E719B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF06629-B960-41CB-A605-4C906F8E719B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF06629-B960-41CB-A605-4C906F8E719B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF06629-B960-41CB-A605-4C906F8E719B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63013818-65BA-4F06-AB91-953EE9369128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63013818-65BA-4F06-AB91-953EE9369128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63013818-65BA-4F06-AB91-953EE9369128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63013818-65BA-4F06-AB91-953EE9369128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F2CE43-35AF-427B-BFEB-852E8EAB5E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F2CE43-35AF-427B-BFEB-852E8EAB5E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F2CE43-35AF-427B-BFEB-852E8EAB5E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F2CE43-35AF-427B-BFEB-852E8EAB5E52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
