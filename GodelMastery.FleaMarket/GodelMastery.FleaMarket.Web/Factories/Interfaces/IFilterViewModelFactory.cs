@@ -8,5 +8,6 @@ namespace GodelMastery.FleaMarket.Web.Factories.Interfaces
     {
         DashboardViewModel CreateDashboardViewModel(DashboardModel dashboardModel);
         FilterViewModel CreateFilterViewModel(FilterDto filterDto);
+        FilterDto CreateFilterDto(FilterViewModel filterViewModel);
     }
 }

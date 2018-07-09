@@ -1,8 +1,11 @@
 ﻿using System.Linq;
+using System.Web;
 using GodelMastery.FleaMarket.BL.BusinessModels;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
+using GodelMastery.FleaMarket.Web.Helpers;
 using GodelMastery.FleaMarket.Web.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace GodelMastery.FleaMarket.Web.Factories.Implementations
 {
@@ -31,6 +34,17 @@ namespace GodelMastery.FleaMarket.Web.Factories.Implementations
                 FilterName = filterDto.FilterName,
                 Content = filterDto.Content
             };
+        }
+
+        public FilterDto CreateFilterDto(FilterViewModel filterViewModel)
+        {
+            var filterDto = new FilterDto
+            {
+                FilterName = filterViewModel.FilterName,
+                Content = filterViewModel.Content,
+                ApplicationUserId = CurrentUser.GetUserId()
+            };
+            return filterDto;
         }
     }
 }

@@ -23,5 +23,16 @@ namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations
                 Content = filter.Content
             };
         }
+
+        public Filter CreateFilter(FilterDto filterDto)
+        {
+            var filter = new Filter
+            {
+                FilterName = filterDto.FilterName,
+                Content = filterDto.Content,
+                ApplicationUserId = filterDto.ApplicationUserId
+            };
+            return filter;
+        }
     }
 }

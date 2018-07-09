@@ -1,6 +1,5 @@
 ﻿using GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces;
 using GodelMastery.FleaMarket.BL.Dtos;
-using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.BL.Services;
 using GodelMastery.FleaMarket.DAL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
@@ -18,7 +17,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
         private Mock<IUserModelFactory> userModelFactory;
         private Mock<IUserStore<ApplicationUser>> userStore;
         private Mock<UserManager<ApplicationUser>> userManager;
-        private IUserService underTest;
+        private UserService underTest;
 
         [SetUp]
         public void Init()

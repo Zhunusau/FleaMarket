@@ -1,0 +1,38 @@
+﻿@model GodelMastery.FleaMarket.Web.ViewModels.FilterViewModel
+
+@{
+    ViewBag.Title = "Create Filter";
+}
+
+<link href="~/Content/Filter/Create.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Create", "Filter", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h2>Create Filter</h2>
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.FilterName, "Filter Name", new { @class = "control-label" })
+
+                @Html.EditorFor(model => model.FilterName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                @Html.ValidationMessageFor(model => model.FilterName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Content, "Filter Content", new { @class = "control-label" })
+
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @placeholder = "Search" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

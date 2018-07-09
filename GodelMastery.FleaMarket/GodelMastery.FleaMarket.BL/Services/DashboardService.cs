@@ -10,7 +10,7 @@ namespace GodelMastery.FleaMarket.BL.Services
 {
     public class DashboardService : BaseService, IDashboardService
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IDashboardModelFactory dashboardModelFactory;
         private readonly IFilterService filterService;
         private readonly IUserService userService;

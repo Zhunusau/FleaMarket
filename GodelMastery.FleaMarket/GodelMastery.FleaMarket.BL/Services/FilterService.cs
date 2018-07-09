@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces;
+using GodelMastery.FleaMarket.BL.Core.Helpers;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Interfaces;
@@ -11,7 +13,7 @@ namespace GodelMastery.FleaMarket.BL.Services
 {
     public class FilterService : BaseService, IFilterService
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IFilterModelFactory filterModelFactory;
 
         public FilterService(IUnitOfWork unitOfWork, IFilterModelFactory filterModelFactory) : base(unitOfWork)
@@ -28,6 +30,32 @@ namespace GodelMastery.FleaMarket.BL.Services
             }
             logger.Info("GetUserFilters {0}", login);
             return filterModelFactory.CreateFilterDtos(applicationUser.Filters);
+        }
+
+        public async Task<OperationDetails> Create(FilterDto filterDto)
+        {
+            logger.Info($"Create filter {filterDto.FilterName}");
+            try
+            {
+                var filter = unitOfWork.Filters.SingleOrDefault(f =>
+                    f.ApplicationUserId.Equals(filterDto.ApplicationUserId) && f.FilterName.Equals(filterDto.FilterName));
+                if (filter != null)
+                {
+                    logger.Error($"User already have a filter with name \"{filterDto.FilterName}\"");
+                    return new OperationDetails(false, $"You already have a filter with name \"{filterDto.FilterName}\"", "");
+                }
+                filter = filterModelFactory.CreateFilter(filterDto);
+                unitOfWork.Filters.Create(filter);
+                await unitOfWork.SaveChanges();
+                logger.Info($"Filter \"{filterDto.FilterName}\" was created successfully");
+                return new OperationDetails(true, $"Filter \"{filterDto.FilterName}\" was created successfully", "");
+            }
+            catch (DataException e)
+            {
+                unitOfWork.RollBack();
+                logger.Error(e.Message);
+                throw new DataException(e.Message);
+            }
         }
     }
 }

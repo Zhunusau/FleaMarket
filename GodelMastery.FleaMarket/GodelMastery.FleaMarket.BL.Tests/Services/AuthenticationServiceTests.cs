@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Core.Helpers;
 using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
 using GodelMastery.FleaMarket.BL.Dtos;
-using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.BL.Services;
 using GodelMastery.FleaMarket.DAL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
@@ -13,7 +12,7 @@ using Microsoft.AspNet.Identity;
 using Moq;
 using NUnit.Framework;
 
-namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
+namespace GodelMastery.FleaMarket.BL.Tests.Services
 {
     [TestFixture]
     public class AuthenticationServiceTests
@@ -22,7 +21,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
         private Mock<IUserStore<ApplicationUser>> userStore;
         private Mock<UserManager<ApplicationUser>> userManager;
         private Mock<IEmailProvider> emailProvider;
-        private IAuthenticationService underTest;
+        private AuthenticationService underTest;
 
         [SetUp]
         public void Init()
@@ -60,7 +59,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             var actualResult = await underTest.CreateUser(userDto);
 
             //then
-            Assert.AreEqual(actualResult.Succedeed, operationDetails.Succedeed);
+            Assert.AreEqual(actualResult.Succeeded, operationDetails.Succeeded);
             Assert.AreEqual(actualResult.Message, operationDetails.Message);
         }
 
@@ -81,7 +80,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             var actualResult = await underTest.CreateUser(userDto);
 
             //then
-            Assert.AreEqual(actualResult.Succedeed, operationDetails.Succedeed);
+            Assert.AreEqual(actualResult.Succeeded, operationDetails.Succeeded);
             Assert.AreEqual(actualResult.Message, operationDetails.Message);
         }
 
@@ -102,7 +101,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             var actualResult = await underTest.CreateUser(userDto);
 
             //then
-            Assert.AreEqual(actualResult.Succedeed, operationDetails.Succedeed);
+            Assert.AreEqual(actualResult.Succeeded, operationDetails.Succeeded);
             Assert.AreEqual(actualResult.Message, operationDetails.Message);
         }
 
@@ -123,11 +122,11 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             var actualResult = await underTest.CreateUser(userDto);
 
             //then
-            Assert.AreEqual(actualResult.Succedeed, operationDetails.Succedeed);
+            Assert.AreEqual(actualResult.Succeeded, operationDetails.Succeeded);
         }
 
         [Test]
-        public async Task GenerateEmailConfirmationTokenAsync_When_User_Is_Not_Exist_Then_Should_Throw_Exception()
+        public void GenerateEmailConfirmationTokenAsync_When_User_Is_Not_Exist_Then_Should_Throw_Exception()
         {
             //arrange
             var email = "vl.kuzmich.st@gmail.com";
@@ -140,7 +139,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
         }
 
         [Test]
-        public async Task GenerateEmailConfirmationToken_When_Generated_Code_Is_Null_Then_Should_Throw_Exception()
+        public void GenerateEmailConfirmationToken_When_Generated_Code_Is_Null_Then_Should_Throw_Exception()
         {
             //arrange
             var user = new ApplicationUser { Email = "vl.kuzmich.st@gmail.com" };
@@ -174,7 +173,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
         }
 
         [Test]
-        public async Task ConfirmEmailAsync_When_User_Is_Not_Exist_Then_Should_Throw_Exception()
+        public void ConfirmEmailAsync_When_User_Is_Not_Exist_Then_Should_Throw_Exception()
         {
             //arrange
             var email = "vl.kuzmich.st@gmail.com";
@@ -203,7 +202,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             var actualResult = await underTest.ConfirmEmailAsync("vl.kuzmich.st@gmail.com", "sometoken");
 
             //when then
-            Assert.AreEqual(actualResult.Succedeed, operatinDetails.Succedeed);
+            Assert.AreEqual(actualResult.Succeeded, operatinDetails.Succeeded);
             Assert.AreEqual(actualResult.Message, operatinDetails.Message);
         }
 
@@ -223,7 +222,7 @@ namespace GodelMastery.FleaMarket.Web.Tests.BL.Services
             var actualResult = await underTest.ConfirmEmailAsync("vl.kuzmich.st@gmail.com", "sometoken");
 
             //when then
-            Assert.AreEqual(actualResult.Succedeed, operatinDetails.Succedeed);
+            Assert.AreEqual(actualResult.Succeeded, operatinDetails.Succeeded);
             Assert.AreEqual(actualResult.Message, operatinDetails.Message);
         }
 

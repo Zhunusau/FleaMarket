@@ -8,5 +8,6 @@ namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces
     {
         IEnumerable<FilterDto> CreateFilterDtos(IEnumerable<Filter> filters);
         FilterDto CreateFilterDto(Filter filter);
+        Filter CreateFilter(FilterDto filterDto);
     }
 }

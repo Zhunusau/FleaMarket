@@ -35,7 +35,7 @@ namespace GodelMastery.FleaMarket.Web.Controllers
             if (ModelState.IsValid)
             {
                 var operationDetails = await authenticationService.CreateUser(userDtoModelFactory.CreateUserDto(signUpViewModel));
-                if (operationDetails.Succedeed)
+                if (operationDetails.Succeeded)
                 {
                     var code = await authenticationService.GenerateEmailConfirmationTokenAsync(signUpViewModel.Email);
                     var callBack = Url.Action("ConfirmEmail", "Account", new {email = signUpViewModel.Email, code = code }, protocol: Request.Url.Scheme);
@@ -50,7 +50,7 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         public async Task<ActionResult> ConfirmEmail(string email, string code)
         {
             var result = await authenticationService.ConfirmEmailAsync(email, code);
-            if (code == null && !result.Succedeed)
+            if (code == null && !result.Succeeded)
             {
                 return View("Error");
             }

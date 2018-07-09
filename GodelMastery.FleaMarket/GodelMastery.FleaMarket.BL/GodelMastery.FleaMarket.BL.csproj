@@ -117,12 +117,12 @@
     <Compile Include="Core\ModelFactories\Implementations\FilterModelFactory.cs" />
     <Compile Include="Core\ModelFactories\Implementations\UserModelFactory.cs" />
     <Compile Include="BusinessModels\DashboardModel.cs" />
+    <Compile Include="Core\ModelFactories\Interfaces\IFilterModelFactory.cs" />
     <Compile Include="Dtos\FilterDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Dtos\LotDto.cs" />
     <Compile Include="Core\ModelFactories\Interfaces\IDashboardModelFactory.cs" />
     <Compile Include="Interfaces\IDashboardService.cs" />
-    <Compile Include="Core\ModelFactories\Interfaces\IFilterModelFactory .cs" />
     <Compile Include="Interfaces\IFilterService.cs" />
     <Compile Include="Core\ModelFactories\Interfaces\IUserModelFactory.cs" />
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\VerificationMessageContext.cs" />

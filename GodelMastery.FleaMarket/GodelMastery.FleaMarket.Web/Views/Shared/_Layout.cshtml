@@ -22,10 +22,9 @@
                 <ul class="nav navbar-nav ">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Search", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+                        @*<li>@Html.ActionLink("Search", "Index", "Home", null, new { @class = "navbar-brand" })</li>*@
                         <li>@Html.ActionLink("Filters", "Dashboard", "Filter", null, new { @class = "navbar-brand" })</li>
                     }
-                    <!--ApplicationRole.Administrator this property in custom class AuthorizeAttribute : System.Web.Mvc.AuthorizeAttribute-->
                     @if (User.IsInRole("@ApplicationRole.Administrator.ToString()"))
                     {
                         <li>@Html.ActionLink("Users", "Index", "Home", null, new { @class = "navbar-brand" })</li>
@@ -62,6 +61,7 @@
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

@@ -2,6 +2,8 @@
     ViewBag.Title = "Home";
 }
 
+<link href="~/Content/Home/Index.css" rel="stylesheet" />
+
 <div class="body-content">
     <div class="jumbotron">
         <div class="col-md-8 col-md-offset-2">
@@ -16,7 +18,7 @@
             </div>
             <br />
             <div class="col-md-4 col-md-offset-8">
-                <p><a class="btn btn-success btn-lg" href="#" role="button">Get Start</a></p>
+                @Html.ActionLink("Get Start", "SignIn", "Account", null, new { @class = "btn btn-success btn-lg", type = "button" })
             </div>
         </div>
     </div>
