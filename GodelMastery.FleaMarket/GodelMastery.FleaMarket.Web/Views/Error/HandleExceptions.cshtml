@@ -1,7 +1,8 @@
 ﻿@Styles.Render("~/Content/Error");
-<body class="error-page">
-    <div class="col-md-4 col-md-offset-6 text-danger">
-        <h1>We will back soon</h1>
-        <h2 class="error-page-font">@ViewBag.Message</h2>
+<div class="container">
+    <div class="text-error">
+        <h1>A error accurred</h1>
+        <h2>Exception details:</h2>
+        <h3>@ViewBag.Message</h3>
     </div>
-</body>
+</div>

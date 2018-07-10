@@ -7,7 +7,8 @@ namespace GodelMastery.FleaMarket.BL.Interfaces
     public interface IFilterService
     {
         Task<IEnumerable<FilterDto>> GetFilterDtos(string login);
-        FilterDto GetFilterById(int filterId);
+        Task RemoveFilter(int id);
         Task<OperationDetails> Create(FilterDto filterDto);
+        FilterDto GetFilterById(int filterId);
     }
 }

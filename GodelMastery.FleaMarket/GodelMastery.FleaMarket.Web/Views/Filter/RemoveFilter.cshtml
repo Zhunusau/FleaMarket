@@ -1,0 +1,22 @@
+﻿@model GodelMastery.FleaMarket.Web.ViewModels.FilterViewModel
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete filter</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really want to delete: @Model.FilterName filter?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

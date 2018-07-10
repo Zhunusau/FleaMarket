@@ -190,5 +190,68 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
             //act assert
             Assert.ThrowsAsync<DataException>(() => underTest.Create(filterDto));
         }
+        [Test]
+        public void RemoveFilter_When_Filter_Not_Exist_Should_Throw_NullReferenceException()
+        {
+            //arrange
+            int id = 1;
+            Filter toRemove = null;
+
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Returns(toRemove);
+
+            //act assert
+            Assert.ThrowsAsync<NullReferenceException>(() => underTest.RemoveFilter(id));
+        }
+
+        [Test]
+        public async Task RemoveFilter_When_Filter_Exist_Should_Call_Delete_And_Save_MethodsAsync()
+        {
+            //arrange
+            int id = 1;
+            Filter toRemove = new Filter() { Id = 1};
+
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Returns(toRemove);
+
+            //act
+            await underTest.RemoveFilter(id);
+
+            //assert
+            unitOfWork.Verify(x => x.Filters.Delete(toRemove));
+            unitOfWork.Verify(x => x.SaveChanges());
+        }
+
+        [Test]
+        public async Task RemoveFilter_When_Exception_Appears_In_Delete_Method_Should_Call_Rollback_MethodAsync()
+        {
+            //arrange
+            int id = 1;
+            Filter toRemove = new Filter() { Id = 1 };
+
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Returns(toRemove);
+            unitOfWork.Setup(x => x.Filters.Delete(toRemove)).Throws(new Exception());
+
+            //act
+            await underTest.RemoveFilter(id);
+
+            //assert
+            unitOfWork.Verify(x => x.RollBack());
+        }
+        [Test]
+        public async Task RemoveFilter_When_Exception_Appears_In_SaveChanges_Method_Should_Call_Rollback_MethodAsync()
+        {
+            //arrange
+            int id = 1;
+            Filter toRemove = new Filter() { Id = 1 };
+
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Returns(toRemove);
+            unitOfWork.Setup(x => x.Filters.Delete(toRemove));
+            unitOfWork.Setup(x => x.SaveChanges()).Throws(new Exception());
+
+            //act
+            await underTest.RemoveFilter(id);
+
+            //assert
+            unitOfWork.Verify(x => x.RollBack());
+        }
     }
 }

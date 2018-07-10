@@ -11,9 +11,9 @@ namespace GodelMastery.FleaMarket.Web.Controllers
     [Authorize]
     public class FilterController : Controller
     {
-        private readonly IFilterService filterService;
         private readonly IDashboardService dashboardService;
         private readonly IFilterViewModelFactory filterViewModelFactory;
+        private readonly IFilterService filterService;
 
         public FilterController(IFilterService filterService, IDashboardService dashboardService, IFilterViewModelFactory filterViewModelFactory)
         {
@@ -51,6 +51,28 @@ namespace GodelMastery.FleaMarket.Web.Controllers
                 ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
             return View(filterViewModel);
+        }
+
+        [HttpGet]
+        public ActionResult RemoveFilter(int filterId)
+        {
+            var filter = filterService.GetFilterById(filterId);
+
+            if(filter != null )
+            {
+                var filterViewModel = filterViewModelFactory.CreateFilterViewModel(filter);
+                return PartialView(filterViewModel);
+            }
+            return View("Dashboard");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("RemoveFilter")]
+        public async Task<ActionResult> RemoveFilterConfirm(int filterId)
+        {
+            await filterService.RemoveFilter(filterId);
+            return RedirectToAction("Dashboard");
         }
     }
 }

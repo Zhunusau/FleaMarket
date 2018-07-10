@@ -34,6 +34,11 @@ namespace GodelMastery.FleaMarket.DAL.Models.Mappings
 
             Property(x => x.Status)
                 .IsRequired();
+
+            HasRequired(x => x.Filter)
+                .WithMany(x => x.Lots)
+                .HasForeignKey(x => x.FilterId)
+                .WillCascadeOnDelete(true);
         }
     }
 }

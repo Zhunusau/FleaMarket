@@ -3,6 +3,7 @@
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_LayoutWithoutFooter.cshtml";
 }
+@Scripts.Render("~/bundles/jquery");
 @using GodelMastery.FleaMarket.Web.Helpers
 <link href="~/Content/Filter/Dashboard.css" rel="stylesheet" />
 <div class="container">
@@ -65,7 +66,7 @@
                                 </td>
                                 <td>
                                     <div class="col-md-2">
-                                        @Html.ActionLink("Delete", "#", "#", new { @class = "btn btn-primary btn-sm", type = "button" })
+                                        @Html.ActionLink("Delete", "RemoveFilter", "Filter", new {filterId = filter.Id}, new { @class = "btn btn-primary btn-sm filterRemove", type = "button"})
                                     </div>
                                 </td>
                             </tr>
@@ -76,3 +77,16 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({ cache: false });
+        $(".filterRemove").on("click", function (e) {
+            e.preventDefault();
+            $("<div></div>")
+                .addClass("modal")
+                .modal("show")
+                .appendTo("body")
+                .load(this.href);
+        });
+    });
+</script>

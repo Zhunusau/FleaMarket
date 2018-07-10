@@ -96,12 +96,11 @@ namespace GodelMastery.FleaMarket.BL.Services
         
         public async Task<ClaimsIdentity> Authenticate(UserDto userDto)
         {
-            logger.Info($"Cheking credentials for user {userDto.Email}");
-
             if (userDto == null)
             {
                 throw new ArgumentNullException(nameof(userDto));
             }
+            logger.Info($"Checking credentials for user {userDto.Email}");
 
             ClaimsIdentity claim = null;
 

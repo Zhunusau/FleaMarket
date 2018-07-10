@@ -11,7 +11,7 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         {
             var errorMessage = Request.QueryString.ToString();
 
-            Regex pattern = new Regex("[+]");
+            Regex pattern = new Regex("[+%]");
             errorMessage = pattern.Replace(errorMessage, " ");
 
             if (!String.IsNullOrEmpty(errorMessage))

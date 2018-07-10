@@ -68,5 +68,25 @@ namespace GodelMastery.FleaMarket.BL.Services
                 throw new DataException(e.Message);
             }
         }
+        public async Task RemoveFilter(int id)
+        {
+            var filter = unitOfWork.Filters.GetById(id);
+            if (filter == null)
+            {
+                throw new NullReferenceException(nameof(filter));
+            }
+
+            logger.Info($"Remove filter with id: {id}");
+            try
+            {
+                unitOfWork.Filters.Delete(filter);
+                await unitOfWork.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                logger.Error($"Filter with {id} can't be removed due to exception: {e.Message}");
+                unitOfWork.RollBack();
+            }
+        }
     }
 }

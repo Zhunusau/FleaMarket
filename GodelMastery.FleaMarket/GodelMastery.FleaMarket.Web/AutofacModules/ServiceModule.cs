@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings;
 using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
+using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.BL.Services;
 
 namespace GodelMastery.FleaMarket.Web.AutofacModules

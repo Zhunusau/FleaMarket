@@ -1,8 +1,11 @@
-﻿.error-page {
-    background: url("../Images/error.jpg") no-repeat center;
+﻿body {
     background-size: cover;
     width: 100%;
+    height: 100vh;
+    position: inherit;
 }
-.error-page-font{
-    font-size: 50px;
+.text-error {
+    color: #000000;
+    word-wrap: break-word;
 }
+

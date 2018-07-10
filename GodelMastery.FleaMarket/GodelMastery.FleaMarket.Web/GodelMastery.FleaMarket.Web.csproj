@@ -291,6 +291,7 @@
     <Content Include="Views\Error\HandleExceptions.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Lot\MonitoringPage.cshtml" />
+    <Content Include="Views\Filter\RemoveFilter.cshtml" />
     <Content Include="Views\Filter\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
