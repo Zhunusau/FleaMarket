@@ -1,24 +1,25 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
 using GodelMastery.FleaMarket.Web.Helpers;
 using GodelMastery.FleaMarket.Web.ViewModels;
-using NLog;
 
 namespace GodelMastery.FleaMarket.Web.Controllers
 {
+    [Authorize]
     public class FilterController : Controller
     {
         private readonly IFilterService filterService;
         private readonly IDashboardService dashboardService;
         private readonly IFilterViewModelFactory filterViewModelFactory;
 
-        public FilterController(IFilterService filterService, IDashboardService dashboardService, IFilterViewModelFactory fileFilterViewModelFactory)
+        public FilterController(IFilterService filterService, IDashboardService dashboardService, IFilterViewModelFactory filterViewModelFactory)
         {
-            this.filterService = filterService;
-            this.dashboardService = dashboardService;
-            this.filterViewModelFactory = fileFilterViewModelFactory;
+            this.filterService = filterService ?? throw new ArgumentNullException(nameof(filterService));
+            this.dashboardService = dashboardService ?? throw new ArgumentNullException(nameof(dashboardService));
+            this.filterViewModelFactory = filterViewModelFactory ?? throw new ArgumentNullException(nameof(filterViewModelFactory));
         }
 
         [HttpGet]

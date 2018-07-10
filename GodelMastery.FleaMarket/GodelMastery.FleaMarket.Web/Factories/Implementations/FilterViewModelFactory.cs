@@ -1,11 +1,9 @@
 ﻿using System.Linq;
-using System.Web;
 using GodelMastery.FleaMarket.BL.BusinessModels;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
 using GodelMastery.FleaMarket.Web.Helpers;
 using GodelMastery.FleaMarket.Web.ViewModels;
-using Microsoft.AspNet.Identity;
 
 namespace GodelMastery.FleaMarket.Web.Factories.Implementations
 {

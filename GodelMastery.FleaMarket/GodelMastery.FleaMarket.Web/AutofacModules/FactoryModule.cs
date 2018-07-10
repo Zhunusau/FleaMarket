@@ -36,6 +36,16 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
                 .RegisterType<FilterViewModelFactory>()
                 .As<IFilterViewModelFactory>()
                 .SingleInstance();
+
+            builder
+                .RegisterType<LotViewModelFactory>()
+                .As<ILotViewModelFactory>()
+                .SingleInstance();
+
+            builder
+                .RegisterType<LotModelFactory>()
+                .As<ILotModelFactory>()
+                .SingleInstance();
         }
     }
 }

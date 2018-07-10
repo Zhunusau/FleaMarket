@@ -37,6 +37,160 @@ namespace GodelMastery.FleaMarket.DAL.Core
             userManager.AddToRole(user.Id, "User");
             var filter = new Filter {FilterName = "Iphone", Content = "Iphone 6s 32 gb silver"};
             user.Filters.Add(filter);
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
+            filter.Lots.Add(new Lot
+            {
+                Price = 200m,
+                Link = "https://www.kufar.by/%D0%A4%D1%80%D1%83%D0%BD%D0%B7%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/%D0%A2%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D1%8B/IPhone_6s_Space_Gray_16_10_10_48833322.htm",
+                DateOfFound = DateTime.Now,
+                DateOfUpdate = DateTime.Now,
+                FilterId = filter.Id,
+                Image = "https://cache5.kufar.by/line_thumbs_small/16/1630712080.jpg",
+                Name = "IPhone 6s Space Gray 16 10/10",
+                Location = "Минск, Фрунзенский"
+            });
             var filter1 = new Filter { FilterName = "Bmw", Content = "Bmw e46 black color" };
             user.Filters.Add(filter1);
             var filter2 = new Filter { FilterName = "Lenovo", Content = "Lenovo y50-70" };

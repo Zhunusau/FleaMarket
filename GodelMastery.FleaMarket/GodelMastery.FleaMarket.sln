@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.BL"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.BL.Tests", "GodelMastery.FleaMarket.BL.Tests\GodelMastery.FleaMarket.BL.Tests.csproj", "{989070BF-3F46-49C3-8E52-19543EA9821D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.Web.Tests", "GodelMastery.FleaMarket.Web.Tests\GodelMastery.FleaMarket.Web.Tests.csproj", "{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.HtmlParser", "GodelMastery.FleaMarket.HtmlParser\GodelMastery.FleaMarket.HtmlParser.csproj", "{EDF06629-B960-41CB-A605-4C906F8E719B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GodelMastery.FleaMarket.Kufar", "GodelMastery.FleaMarket.Kufar\GodelMastery.FleaMarket.Kufar.csproj", "{63013818-65BA-4F06-AB91-953EE9369128}"
@@ -41,10 +39,6 @@ Global
 		{989070BF-3F46-49C3-8E52-19543EA9821D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{989070BF-3F46-49C3-8E52-19543EA9821D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{989070BF-3F46-49C3-8E52-19543EA9821D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD1DF72C-1DA7-4E90-897E-9377A6272FE9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDF06629-B960-41CB-A605-4C906F8E719B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDF06629-B960-41CB-A605-4C906F8E719B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDF06629-B960-41CB-A605-4C906F8E719B}.Release|Any CPU.ActiveCfg = Release|Any CPU

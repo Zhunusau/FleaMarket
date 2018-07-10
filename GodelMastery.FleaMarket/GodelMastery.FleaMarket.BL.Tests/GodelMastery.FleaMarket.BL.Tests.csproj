@@ -80,6 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationServiceTests.cs" />
     <Compile Include="Services\FilterServiceTests.cs" />
+    <Compile Include="Services\LotServiceTests.cs" />
     <Compile Include="Services\UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -55,7 +55,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
                 .Returns(Task.FromResult<ApplicationUser>(null));
 
-            //when then
+            //act assert
             Assert.ThrowsAsync<ArgumentNullException>(() => underTest.GetFilterDtos(email));
         }
 
@@ -63,7 +63,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
         public async Task GetUserFilters_When_User_Is_Exist_Then_Should_Return_FilterDtos()
         {
             //arrange
-            var filterDtos = new List<FilterDto> {new FilterDto { ApplicationUserId = "appId", FilterName = "Iphone", Content = "Iphone 6s" }};
+            var expectedResult = new List<FilterDto> {new FilterDto { ApplicationUserId = "appId", FilterName = "Iphone", Content = "Iphone 6s" }};
             var filters = new List<Filter> { new Filter { ApplicationUserId = "appId", FilterName = "Iphone", Content = "Iphone 6s" } };
             applicationUser = new ApplicationUser {Id = "appId", Email = "test@gmail.com", Filters = filters };
             var email = "test@gmail.com";
@@ -72,36 +72,70 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .ReturnsAsync(applicationUser);
             filterModelFactory
                 .Setup(x => x.CreateFilterDtos(filters))
-                .Returns(filterDtos);
+                .Returns(expectedResult);
 
-            //when
+            //act
             var actualResult = await underTest.GetFilterDtos(email);
 
-            Assert.AreEqual(actualResult.First(), filterDtos.First());
+            //assert
+            Assert.AreEqual(expectedResult.First(), actualResult.First());
+        }
+
+        [Test]
+        public void GetFilterById_When_Filter_Is_Not_Exist_Then_Should_Throw_Exception()
+        {
+            //arrange
+            int incorrectId = -4;
+            unitOfWork
+                .Setup(x => x.Filters.GetById(It.IsAny<int>()))
+                .Returns<Filter>(null);
+
+            //act assert
+            Assert.Throws<ArgumentNullException>(() => underTest.GetFilterById(incorrectId));
         }
 
         [Test]
         public async Task Create_When_Filter_Already_Exist_Then_Operation_Details_False()
         {
             //arrange
-            var operationDetails = new OperationDetails(false, $"You already have a filter with name \"{filterDto.FilterName}\"", "");
+            var expectedResult = new OperationDetails(false, $"You already have a filter with name \"{filterDto.FilterName}\"", "");
 
             unitOfWork
                 .Setup(u => u.Filters.SingleOrDefault(It.Is<Func<Filter, bool>>(i => i(filter))))
                 .Returns(filter);
 
-            //when
+            //act
             var actualResult = await underTest.Create(filterDto);
 
             //assert
-            Assert.AreEqual(operationDetails.Succeeded, actualResult.Succeeded);
+            Assert.AreEqual(expectedResult.Succeeded, actualResult.Succeeded);
+        }
+
+        [Test]
+        public void GetFilterById_When_Filter_Is_Exist_Then_Should_Return_FilterDto()
+        {
+            //arrange
+            var filter = new Filter {Id = 1, FilterName = "FilterName", Content = "FilterContent"};
+            var expectedResult = new FilterDto { Id = 1, FilterName = "FilterName", Content = "FilterContent" };
+            unitOfWork
+                .Setup(x => x.Filters.GetById(1))
+                .Returns(filter);
+            filterModelFactory
+                .Setup(x => x.CreateFilterDto(filter))
+                .Returns(filterDto);
+
+            //act
+            var actualResult = underTest.GetFilterById(1);
+
+            //assert
+            Assert.AreEqual(expectedResult, actualResult);
         }
 
         [Test]
         public async Task Create_When_Filter_Added_Successfully_Then_Operation_Details_True()
         {
             //arrange
-            var operationDetails = new OperationDetails(true, $"Filter \"{filterDto.FilterName}\" was created successfully", "");
+            var expectedResult = new OperationDetails(true, $"Filter \"{filterDto.FilterName}\" was created successfully", "");
 
             unitOfWork
                 .Setup(u => u.Filters.SingleOrDefault(It.IsAny<Func<Filter, bool>>()))
@@ -120,11 +154,11 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Returns(() => Task.Run(() => { }))
                 .Verifiable();
 
-            //when
+            //act
             var actualResult = await underTest.Create(filterDto);
 
             //assert
-            Assert.AreEqual(operationDetails.Succeeded, actualResult.Succeeded);
+            Assert.AreEqual(expectedResult.Succeeded, actualResult.Succeeded);
         }
 
         [Test]
@@ -153,7 +187,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Setup(u => u.RollBack())
                 .Verifiable();
 
-            //assert
+            //act assert
             Assert.ThrowsAsync<DataException>(() => underTest.Create(filterDto));
         }
     }

@@ -95,6 +95,12 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -205,7 +211,10 @@
     <Compile Include="AutofacModules\FactoryModule.cs" />
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LotController.cs" />
+    <Compile Include="Factories\Implementations\LotViewModelFactory.cs" />
     <Compile Include="Factories\Implementations\UserViewModelFactory.cs" />
+    <Compile Include="Factories\Interfaces\ILotViewModelFactory.cs" />
     <Compile Include="Factories\Interfaces\IUserViewModelFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,9 +223,12 @@
     <Compile Include="AutofacModules\ControllerModule.cs" />
     <Compile Include="AutofacModules\RepositoryModule.cs" />
     <Compile Include="AutofacModules\ServiceModule.cs" />
+    <Compile Include="Helpers\DecimalExtensions.cs" />
     <Compile Include="Helpers\CurrentUser.cs" />
-    <Compile Include="Helpers\HtmExtensions.cs" />
+    <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\LotViewModel.cs" />
+    <Compile Include="ViewModels\MonitoringPageViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Factories\Implementations\FilterViewModelFactory.cs" />
     <Compile Include="Factories\Interfaces\IFilterViewModelFactory.cs" />
@@ -232,6 +244,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Filter\Dashboard.css" />
     <Content Include="Content\Error.css" />
+    <Content Include="Content\Lot\MonitoringPage.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Filter\Create.css" />
     <Content Include="Content\Home\Index.css" />
     <Content Include="favicon.ico" />
@@ -276,6 +290,7 @@
     <Content Include="Views\Shared\_LayoutWithoutFooter.cshtml" />
     <Content Include="Views\Error\HandleExceptions.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Lot\MonitoringPage.cshtml" />
     <Content Include="Views\Filter\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>

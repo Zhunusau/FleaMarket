@@ -60,7 +60,7 @@
                                 <td class="col-md-8"><strong>@Html.ActionLink(filter.Content, "#", "#")</strong></td>
                                 <td>
                                     <div class="col-md-2">
-                                        @Html.ActionLink("Show lots", "#", "#", new { @class = "btn btn-primary btn-sm", type = "button" })
+                                        @Html.ActionLink("Show lots", "MonitoringPage", "Lot", new { filterId = filter.Id }, new { @class = "btn btn-primary btn-sm", type = "button" })
                                     </div>
                                 </td>
                                 <td>

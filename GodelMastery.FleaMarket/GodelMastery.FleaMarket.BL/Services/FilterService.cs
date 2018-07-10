@@ -26,10 +26,21 @@ namespace GodelMastery.FleaMarket.BL.Services
             var applicationUser = await unitOfWork.UserManager.FindByEmailAsync(login);
             if (applicationUser == null)
             {
-                throw new ArgumentNullException(nameof(applicationUser));
+                throw new NullReferenceException(nameof(applicationUser));
             }
-            logger.Info("GetUserFilters {0}", login);
+            logger.Info($"Get a collection of filters by user login {login}");
             return filterModelFactory.CreateFilterDtos(applicationUser.Filters);
+        }
+
+        public FilterDto GetFilterById(int filterId)
+        {
+            var filter = unitOfWork.Filters.GetById(filterId);
+            if (filter == null)
+            {
+                throw new NullReferenceException(nameof(filter));
+            }
+            logger.Info($"Get filter with filter id {filterId}");
+            return filterModelFactory.CreateFilterDto(filter);
         }
 
         public async Task<OperationDetails> Create(FilterDto filterDto)

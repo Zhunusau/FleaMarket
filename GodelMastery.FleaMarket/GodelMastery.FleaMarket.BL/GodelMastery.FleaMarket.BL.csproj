@@ -115,8 +115,10 @@
     <Compile Include="Core\Helpers\SendVerificationLinkHelper.cs" />
     <Compile Include="Core\ModelFactories\Implementations\DashboardModelFactory.cs" />
     <Compile Include="Core\ModelFactories\Implementations\FilterModelFactory.cs" />
+    <Compile Include="Core\ModelFactories\Implementations\LotModelFactory.cs" />
     <Compile Include="Core\ModelFactories\Implementations\UserModelFactory.cs" />
     <Compile Include="BusinessModels\DashboardModel.cs" />
+    <Compile Include="Core\ModelFactories\Interfaces\ILotModelFactory.cs" />
     <Compile Include="Core\ModelFactories\Interfaces\IFilterModelFactory.cs" />
     <Compile Include="Dtos\FilterDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
@@ -131,12 +133,14 @@
     <Compile Include="Core\Helpers\EmailHelper\Messages\VerificationMessage.cs" />
     <Compile Include="Core\Helpers\OperationDetails.cs" />
     <Compile Include="Interfaces\IAuthenticationService.cs" />
+    <Compile Include="Interfaces\ILotService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\DashboardService.cs" />
     <Compile Include="Services\FilterService.cs" />
+    <Compile Include="Services\LotService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Core\Helpers\HtmlParserHelper\HtmlParserProvider.cs" />
   </ItemGroup>
