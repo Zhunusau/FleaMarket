@@ -144,7 +144,6 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Core\Helpers\HtmlParserHelper\HtmlParserProvider.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\GodelMastery.FleaMarket.DAL\GodelMastery.FleaMarket.DAL.csproj">
       <Project>{F0E948F2-92AD-4429-803C-DAFD6F361912}</Project>
@@ -153,6 +152,14 @@
     <ProjectReference Include="..\GodelMastery.FleaMarket.HtmlParserInterfaces\GodelMastery.FleaMarket.HtmlParserInterfaces.csproj">
       <Project>{52f2ce43-35af-427b-bfeb-852e8eab5e52}</Project>
       <Name>GodelMastery.FleaMarket.HtmlParserInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GodelMastery.FleaMarket.HtmlParser\GodelMastery.FleaMarket.HtmlParser.csproj">
+      <Project>{edf06629-b960-41cb-a605-4c906f8e719b}</Project>
+      <Name>GodelMastery.FleaMarket.HtmlParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GodelMastery.FleaMarket.Kufar\GodelMastery.FleaMarket.Kufar.csproj">
+      <Project>{63013818-65ba-4f06-ab91-953ee9369128}</Project>
+      <Name>GodelMastery.FleaMarket.Kufar</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

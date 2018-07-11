@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Dtos;
 
 namespace GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper
 {
-    interface IHtmlParserProvider
+    public interface IHtmlParserProvider
     {
-        ICollection<LotDto> GetLotsByFilter(FilterDto filterDto);
+        Task<List<LotDto>> GetLotsByFilter(string filterContent);
     }
 }

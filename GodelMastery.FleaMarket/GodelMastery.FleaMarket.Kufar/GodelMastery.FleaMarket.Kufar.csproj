@@ -49,13 +49,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\GodelMastery.FleaMarket.HtmlParserInterfaces\GodelMastery.FleaMarket.HtmlParserInterfaces.csproj">
       <Project>{52f2ce43-35af-427b-bfeb-852e8eab5e52}</Project>
       <Name>GodelMastery.FleaMarket.HtmlParserInterfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

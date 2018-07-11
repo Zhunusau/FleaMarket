@@ -252,7 +252,6 @@
     <Content Include="Images\background.jpg" />
     <Content Include="Images\error.jpg" />
     <Content Include="Images\honey-caranzo-349145-unsplash.jpg" />
-    <Content Include="Images\Koala.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="ApplicationInsights.config">

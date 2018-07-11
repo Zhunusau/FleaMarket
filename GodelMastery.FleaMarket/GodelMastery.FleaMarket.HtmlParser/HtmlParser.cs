@@ -1,19 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using GodelMastery.FleaMarket.HtmlParserInterfaces;
 
 namespace GodelMastery.FleaMarket.HtmlParser
 {
     public class HtmlParser<T> : IHtmlParser<T> where T : class
     {
-        private IHtmlLoader htmlLoader;
+        private readonly IParser<T> parser;
+        private readonly IParserSettings settings;
 
-        public HtmlParser(IHtmlLoader htmlLoader)
+        public HtmlParser(IParser<T> parser, IParserSettings settings)
         {
-            this.htmlLoader = htmlLoader;
+            this.parser = parser;
+            this.settings = settings;
         }
 
-        public bool IsActive => throw new NotImplementedException();
-        public IParser<T> Parser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IParserSettings Settings { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public async Task<IEnumerable<T>> GetHtmlPages()
+        {
+            using (var htmlLoader = new HtmlLoader(settings))
+            {
+                var htmlPages = new List<T>();
+                //Can use while(true), however it will be very long
+                for (var page = 1; page <= 5; page++)
+                {
+                    var source = await htmlLoader.GetSourceByPageId(page);
+                    var domParser = new AngleSharp.Parser.Html.HtmlParser();
+                    var document = await domParser.ParseAsync(source);
+                    var result = parser.Parse(document);
+                    if (result == null)
+                    {
+                        break;
+                    }
+                    htmlPages.Add(result);
+                }
+                return htmlPages;
+            }
+        }
     }
 }

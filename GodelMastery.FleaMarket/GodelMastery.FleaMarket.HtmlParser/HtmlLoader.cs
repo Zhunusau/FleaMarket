@@ -1,20 +1,51 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using GodelMastery.FleaMarket.HtmlParserInterfaces;
 
 namespace GodelMastery.FleaMarket.HtmlParser
 {
-    public class HtmlLoader : IHtmlLoader
+    public class HtmlLoader : IDisposable
     {
-        private IParserSettings parserSettings;
+        private readonly HttpClient client;
+        private readonly string url;
+        private bool disposed;
 
         public HtmlLoader(IParserSettings parserSettings)
         {
-            this.parserSettings = parserSettings;
+            client = new HttpClient();
+            url = $"{parserSettings.BaseUrl}/{parserSettings.Prefix}";
         }
 
-        public Task<string> GetSourceByPageId(int page)
+        public async Task<string> GetSourceByPageId(int page)
         {
-            throw new System.NotImplementedException();
+            var currentUrl = url.Replace("{currentPage}", page.ToString());
+            var response = await client.GetAsync(currentUrl);
+            string source = null;
+            if (response != null && response.StatusCode == HttpStatusCode.OK)
+            {
+                source = await response.Content.ReadAsStringAsync();
+            }
+            return source;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    client.Dispose();
+                }
+                disposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

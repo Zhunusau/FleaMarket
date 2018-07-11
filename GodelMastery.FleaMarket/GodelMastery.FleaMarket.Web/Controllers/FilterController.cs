@@ -74,5 +74,6 @@ namespace GodelMastery.FleaMarket.Web.Controllers
             await filterService.RemoveFilter(filterId);
             return RedirectToAction("Dashboard");
         }
+
     }
 }

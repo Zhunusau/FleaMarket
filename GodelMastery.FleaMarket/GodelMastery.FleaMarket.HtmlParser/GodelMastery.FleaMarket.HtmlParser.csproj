@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="HtmlLoader.cs" />
     <Compile Include="HtmlParser.cs" />
-    <Compile Include="IHtmlLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
