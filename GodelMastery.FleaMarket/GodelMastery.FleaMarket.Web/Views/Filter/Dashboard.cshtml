@@ -1,7 +1,7 @@
 ﻿@model GodelMastery.FleaMarket.Web.ViewModels.DashboardViewModel
 @{
     ViewBag.Title = "Dashboard";
-    Layout = "~/Views/Shared/_LayoutWithoutFooter.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Scripts.Render("~/bundles/jquery");
 @using GodelMastery.FleaMarket.Web.Helpers
@@ -28,65 +28,97 @@
                                 <h4><strong>@Model.UserInfoViewModel.FullName</strong></h4>
                                 <p>
                                     <i class="glyphicon glyphicon-envelope"></i> @Model.UserInfoViewModel.Email
-                                    <br />
+                                <p>
+                                    @if (@Model.ErrorMessage != null)
+                                    {
+                                        <strong>@Model.ErrorMessage</strong>
+                                    }
+                                    else
+                                    {
+                                        if (@Model.UserInfoViewModel.LotUpdateInterval.Equals("None"))
+                                        {
+                                        <p>
+                                            Update lots : <strong>None</strong>  @Html.ActionLink("Change", "ChangeLotUpdateInterval", "Lot", null, new { @class = "btn btn-primary btn-xs changeLotUpdateInterval", type = "button" })
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            Update lots : <strong>every @Model.UserInfoViewModel.LotUpdateInterval</strong>  @Html.ActionLink("Change", "ChangeLotUpdateInterval", "Lot", null, new { @class = "btn btn-primary btn-xs changeLotUpdateInterval", type = "button" })
+                                        </p>
+                                    }
+                                }
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-1">
-            @Html.ActionLink("Create filter", "Create", "Filter", new { @class = "btn btn-primary", type = "button" })
+        <div class="row">
+            <div class="col-md-4 col-md-offset-1">
+                @Html.ActionLink("Create filter", "Create", "Filter", new { @class = "btn btn-primary", type = "button" })
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="table-responsive">
-                <table class="table table-filter-content">
-                    <thead>
-                        <tr class="dark">
-                            <td class="col-md-2"><strong>Filter name</strong></td>
-                            <td class="col-md-8"><strong>Content</strong></td>
-                            <td class="col-md-2"></td>
-                            <td class="col-md-2"></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var filter in @Model.FilterViewModels)
-                        {
-                            <tr>
-                                <td class="col-md-2"><strong>@Html.ActionLink(filter.FilterName, "#", "#")</strong></td>
-                                <td class="col-md-8"><strong>@Html.ActionLink(filter.Content, "#", "#")</strong></td>
-                                <td>
-                                    <div class="col-md-2">
-                                        @Html.ActionLink("Show lots", "MonitoringPage", "Lot", new { filterId = filter.Id }, new { @class = "btn btn-primary btn-sm", type = "button" })
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-md-2">
-                                        @Html.ActionLink("Delete", "RemoveFilter", "Filter", new {filterId = filter.Id}, new { @class = "btn btn-primary btn-sm filterRemove", type = "button"})
-                                    </div>
-                                </td>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="table-responsive">
+                    <table class="table table-filter-content">
+                        <thead>
+                            <tr class="dark">
+                                <td class="col-md-2"><strong>Filter name</strong></td>
+                                <td class="col-md-8"><strong>Content</strong></td>
+                                <td class="col-md-2"></td>
+                                <td class="col-md-2"></td>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var filter in @Model.FilterViewModels)
+                            {
+                                <tr>
+                                    <td class="col-md-2"><strong>@Html.ActionLink(filter.FilterName, "MonitoringPage", "Lot", new { filterId = filter.Id }, null)</strong></td>
+                                    <td class="col-md-8"><strong>@Html.ActionLink(filter.Content, "MonitoringPage", "Lot", new { filterId = filter.Id }, null)</strong></td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            @Html.ActionLink("Show lots", "MonitoringPage", "Lot", new { filterId = filter.Id }, new { @class = "btn btn-primary btn-sm", type = "button" })
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-2">
+                                            @Html.ActionLink("Delete", "RemoveFilter", "Filter", new { filterId = filter.Id }, new { @class = "btn btn-primary btn-sm filterRemove", type = "button" })
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    $(document).ready(function () {
-        $.ajaxSetup({ cache: false });
-        $(".filterRemove").on("click", function (e) {
-            e.preventDefault();
-            $("<div></div>")
-                .addClass("modal")
-                .modal("show")
-                .appendTo("body")
-                .load(this.href);
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+            $(".changeLotUpdateInterval").on("click", function (e) {
+                e.preventDefault();
+                $("<div></div>")
+                    .addClass("modal")
+                    .modal("show")
+                    .appendTo("body")
+                    .load(this.href);
+            });
         });
-    });
-</script>
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+            $(".filterRemove").on("click", function (e) {
+                e.preventDefault();
+                $("<div></div>")
+                    .addClass("modal")
+                    .modal("show")
+                    .appendTo("body")
+                    .load(this.href);
+            });
+        });
+
+    </script>

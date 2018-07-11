@@ -12,5 +12,14 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings.Section
                 return base["EmailProviderInfo"] as EmailProviderInfo;
             }
         }
+
+        [ConfigurationProperty("LotUpdateIntervalInfo", IsRequired = true)]
+        public LotUpdateIntervalInfo LotUpdateIntervalInfo
+        {
+            get
+            {
+                return base["LotUpdateIntervalInfo"] as LotUpdateIntervalInfo;
+            }
+        }
     }
 }

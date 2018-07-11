@@ -6,5 +6,6 @@ namespace GodelMastery.FleaMarket.Web.ViewModels
     {
         public IEnumerable<FilterViewModel> FilterViewModels { get; set; }
         public UserInfoViewModel UserInfoViewModel { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

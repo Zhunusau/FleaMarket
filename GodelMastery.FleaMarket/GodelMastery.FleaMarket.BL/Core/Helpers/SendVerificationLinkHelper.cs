@@ -2,7 +2,7 @@
 {
     public static class SendVerificationLinkHelper
     {
-        public const string Title = "FleaMarket";
-        public const string Subject = "Your account is successfully created";
+        public static string Title => "FleaMarket";
+        public static string Subject => "Your account is successfully created";
     }
 }

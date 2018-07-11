@@ -1,13 +1,14 @@
-﻿using Autofac;
-using Autofac.Integration.Mvc;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web.Mvc;
+using Autofac;
+using Autofac.Integration.Mvc;
+
 
 namespace GodelMastery.FleaMarket.Web.App_Start
 {
     public static class AutofacConfig
     {
-        public static void ConfigureContainer()
+        public static IContainer ConfigureContainer()
         {
             var builder = new ContainerBuilder();
 
@@ -16,6 +17,8 @@ namespace GodelMastery.FleaMarket.Web.App_Start
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            return container;
         }
     }
 }

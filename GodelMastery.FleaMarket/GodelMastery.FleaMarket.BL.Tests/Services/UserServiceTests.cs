@@ -8,6 +8,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
+using GodelMastery.FleaMarket.BL.Core.Helpers.SchedulerHelper;
 
 namespace GodelMastery.FleaMarket.BL.Tests.Services
 {
@@ -17,8 +18,8 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
         private Mock<IUserModelFactory> userModelFactory;
         private Mock<IUserStore<ApplicationUser>> userStore;
         private Mock<UserManager<ApplicationUser>> userManager;
+        private Mock<ISchedulerManager> schedulerManager;
         private UserService underTest;
-
         [SetUp]
         public void Init()
         {

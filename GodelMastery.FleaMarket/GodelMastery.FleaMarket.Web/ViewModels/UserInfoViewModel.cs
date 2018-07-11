@@ -7,5 +7,6 @@
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";
         public string Icon { get; set; }
+        public string LotUpdateInterval { get; set; }
     }
 }

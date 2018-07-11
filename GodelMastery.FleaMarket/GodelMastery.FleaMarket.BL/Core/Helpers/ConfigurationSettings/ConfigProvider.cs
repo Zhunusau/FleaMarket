@@ -11,7 +11,7 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings
             var applicationConfigSection = GetSection("ApplicationConfigSection") as ApplicationConfigSection;
             if (applicationConfigSection == null)
             {
-                throw new ArgumentNullException(nameof(applicationConfigSection));
+                throw new NullReferenceException(nameof(applicationConfigSection));
             }
             return new SendMessageConfigModel
             {
@@ -19,6 +19,23 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings
                 Password = applicationConfigSection.EmailProviderInfo.Password,
                 SmtpHost = applicationConfigSection.EmailProviderInfo.SmtpHost,
                 SmtpPort = applicationConfigSection.EmailProviderInfo.SmtpPort
+            };
+        }
+
+        public LotUpdateIntervalConfigModel ConfigurateLotUpdateIntervalConfigModel() 
+        {
+            var applicationConfigSection = GetSection("ApplicationConfigSection") as ApplicationConfigSection;
+            if (applicationConfigSection == null)
+            {
+                throw new NullReferenceException(nameof(applicationConfigSection));
+            }
+            return new LotUpdateIntervalConfigModel
+            {
+                EveryTenMinutes = applicationConfigSection.LotUpdateIntervalInfo.EveryTenMinutes,
+                EveryHour = applicationConfigSection.LotUpdateIntervalInfo.EveryHour,
+                EveryThreeHours = applicationConfigSection.LotUpdateIntervalInfo.EveryThreeHours,
+                EveryTwelveHours = applicationConfigSection.LotUpdateIntervalInfo.EveryTwelveHours,
+                EveryDay = applicationConfigSection.LotUpdateIntervalInfo.EveryDay
             };
         }
 

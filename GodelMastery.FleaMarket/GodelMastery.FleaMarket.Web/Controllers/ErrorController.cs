@@ -13,16 +13,7 @@ namespace GodelMastery.FleaMarket.Web.Controllers
 
             Regex pattern = new Regex("[+%]");
             errorMessage = pattern.Replace(errorMessage, " ");
-
-            if (!String.IsNullOrEmpty(errorMessage))
-            {
-                ViewBag.Message = errorMessage;
-            }
-            else
-            {
-                ViewBag.Message = "Unknown exception occurs";
-            }
-
+            ViewBag.Message = !String.IsNullOrEmpty(errorMessage) ? errorMessage : "Unknown exception occurs";
             return View();
         }
     }

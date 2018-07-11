@@ -1,9 +1,5 @@
-﻿using GodelMastery.FleaMarket.BL.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using GodelMastery.FleaMarket.BL.Dtos;
 
 namespace GodelMastery.FleaMarket.BL.BusinessModels
 {

@@ -9,7 +9,7 @@ namespace GodelMastery.FleaMarket.Web.Factories.Implementations
 {
     public class FilterViewModelFactory : IFilterViewModelFactory
     {
-        public DashboardViewModel CreateDashboardViewModel(DashboardModel dashboardModel)
+        public DashboardViewModel CreateDashboardViewModel(DashboardModel dashboardModel, string errorMessage = null)
         {
             return new DashboardViewModel
             {
@@ -19,8 +19,10 @@ namespace GodelMastery.FleaMarket.Web.Factories.Implementations
                     Email = dashboardModel.UserDto.Email,
                     FirstName = dashboardModel.UserDto.FirstName,
                     LastName = dashboardModel.UserDto.LastName,
-                    Icon = dashboardModel.UserDto.Icon
-                }
+                    Icon = dashboardModel.UserDto.Icon,
+                    LotUpdateInterval = dashboardModel.UserDto.LotUpdateInterval == null ? "None" : DateTimeHelper.GetInterval(dashboardModel.UserDto.LotUpdateInterval.Value)
+                },
+                ErrorMessage = errorMessage
             };
         }
 

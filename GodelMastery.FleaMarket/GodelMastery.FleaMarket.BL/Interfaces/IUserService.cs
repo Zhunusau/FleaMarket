@@ -6,5 +6,6 @@ namespace GodelMastery.FleaMarket.BL.Interfaces
     public interface IUserService
     {
         Task<UserDto> GetUserDto(string login);
+        Task<bool> IsAccountVerified(string login);
     }
 }

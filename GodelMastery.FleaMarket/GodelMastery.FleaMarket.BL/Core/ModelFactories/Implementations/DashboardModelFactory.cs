@@ -1,7 +1,7 @@
-﻿using GodelMastery.FleaMarket.BL.BusinessModels;
+﻿using System.Collections.Generic;
+using GodelMastery.FleaMarket.BL.BusinessModels;
 using GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces;
 using GodelMastery.FleaMarket.BL.Dtos;
-using System.Collections.Generic;
 
 namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations
 {

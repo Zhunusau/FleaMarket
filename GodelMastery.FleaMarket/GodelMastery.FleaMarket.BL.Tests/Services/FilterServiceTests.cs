@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using GodelMastery.FleaMarket.BL.Services;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.BL.Core.Helpers;
+using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
 using GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces;
+using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Microsoft.AspNet.Identity;
@@ -21,6 +23,8 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
         private Mock<IUnitOfWork> unitOfWork;
         private Mock<IFilterModelFactory> filterModelFactory;
         private Mock<IUserStore<ApplicationUser>> userStore;
+        private Mock<ILotService> lotService;
+        private Mock<IEmailProvider> emailProvider;
         private Mock<UserManager<ApplicationUser>> userManager;
         private FilterService underTest;
         private FilterDto filterDto;
@@ -35,7 +39,9 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
             userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object);
             unitOfWork.Setup(x => x.UserManager).Returns(userManager.Object);
             filterModelFactory = new Mock<IFilterModelFactory>();
-            underTest = new FilterService(unitOfWork.Object, filterModelFactory.Object);
+            emailProvider = new Mock<IEmailProvider>();
+            lotService = new Mock<ILotService>();
+            underTest = new FilterService(unitOfWork.Object, filterModelFactory.Object, emailProvider.Object, lotService.Object);
             filterDto = new FilterDto { FilterName = "Trek", Content = "Bicycle Trek 29", ApplicationUserId = "id" };
             applicationUser = new ApplicationUser { Id = "id", Email = "test@gmail.com", UserName = "test@gmail.com" };
             filter = new Filter

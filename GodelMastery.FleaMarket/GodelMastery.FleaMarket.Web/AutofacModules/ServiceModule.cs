@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings;
 using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
-using GodelMastery.FleaMarket.BL.Interfaces;
+using GodelMastery.FleaMarket.BL.Core.Helpers.SchedulerHelper;
 using GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper;
 using GodelMastery.FleaMarket.BL.Services;
 
@@ -14,21 +14,30 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
             builder
                 .RegisterAssemblyTypes(typeof(BaseService).Assembly)
                 .AsImplementedInterfaces()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<EmailProvider>()
-                .As<IEmailProvider>()
-                .SingleInstance();
+                .RegisterType<FilterService>()
+                .AsSelf()
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<ConfigProvider>()
                 .As<IConfigProvider>()
-                .SingleInstance();
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<HtmlParserProvider>()
                 .As<IHtmlParserProvider>()
                 .SingleInstance();
+            builder
+                .RegisterType<EmailProvider>()
+                .As<IEmailProvider>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<SchedulerManager>()
+                .As<ISchedulerManager>()
+                .InstancePerLifetimeScope();
 
             base.Load(builder);
         }

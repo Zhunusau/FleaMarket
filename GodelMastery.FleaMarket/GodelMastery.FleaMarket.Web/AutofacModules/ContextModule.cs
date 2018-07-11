@@ -1,12 +1,12 @@
-﻿using Autofac;
+﻿using System.Data.Entity;
+using Autofac;
+using System.Web;
 using GodelMastery.FleaMarket.DAL.Core;
-using System.Data.Entity;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.AspNet.Identity.Owin;
-using System.Web;
 using Microsoft.Owin.Security;
 
 namespace GodelMastery.FleaMarket.Web.AutofacModules
@@ -20,40 +20,39 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
             builder
                 .RegisterType<FleaMarketContext>()
                 .As<DbContext>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<UserManager<ApplicationUser>>()
-                .WithProperty("UserTokenProvider",
-                    new DataProtectorTokenProvider<ApplicationUser>(GetDpapiDataProtectionProvider().Create("IdentityProvider")))
+                .WithProperty("UserTokenProvider", new DataProtectorTokenProvider<ApplicationUser>(GetDpapiDataProtectionProvider().Create("IdentityProvider")))
                 .AsSelf()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<RoleManager<ApplicationRole>>()
                 .AsSelf()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<UserStore<ApplicationUser>>()
                 .UsingConstructor(typeof(DbContext))
                 .As<IUserStore<ApplicationUser>>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<RoleStore<ApplicationRole>>()
                 .UsingConstructor(typeof(DbContext))
                 .As<IRoleStore<ApplicationRole, string>>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
 
             builder
                 .Register(c => HttpContext.Current.GetOwinContext().Authentication)
                 .As<IAuthenticationManager>()
-                .InstancePerRequest();
+                .InstancePerLifetimeScope();
         }
 
         #region Configurations
-        private DpapiDataProtectionProvider GetDpapiDataProtectionProvider()
+        private static DpapiDataProtectionProvider GetDpapiDataProtectionProvider()
         {
             return new DpapiDataProtectionProvider("GodelMastery.FleaMarket.Provider");
         }

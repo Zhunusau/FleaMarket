@@ -52,11 +52,26 @@
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac.Integration.Mvc.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.Owin.4.0.1\lib\net45\Autofac.Integration.Mvc.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Owin.4.2.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Autofac, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Autofac.2.3.1\lib\net45\Hangfire.Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.Core, Version=1.6.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.6.19\lib\net45\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.6.19.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.6.19\lib\net45\Hangfire.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -200,6 +215,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ContainerJobActivator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
@@ -209,8 +225,10 @@
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LotController.cs" />
+    <Compile Include="Factories\Implementations\ChangeLotUpdateIntervalViewModelFactory.cs" />
     <Compile Include="Factories\Implementations\LotViewModelFactory.cs" />
     <Compile Include="Factories\Implementations\UserViewModelFactory.cs" />
+    <Compile Include="Factories\Interfaces\IChangeLotUpdateIntervalViewModelFactory.cs" />
     <Compile Include="Factories\Interfaces\ILotViewModelFactory.cs" />
     <Compile Include="Factories\Interfaces\IUserViewModelFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -220,6 +238,8 @@
     <Compile Include="AutofacModules\ControllerModule.cs" />
     <Compile Include="AutofacModules\RepositoryModule.cs" />
     <Compile Include="AutofacModules\ServiceModule.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\ErrorMessagesHelper.cs" />
     <Compile Include="Helpers\DecimalExtensions.cs" />
     <Compile Include="Helpers\CurrentUser.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
@@ -231,6 +251,7 @@
     <Compile Include="Factories\Interfaces\IFilterViewModelFactory.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\FilterViewModel.cs" />
+    <Compile Include="ViewModels\ChangeLotUpdateIntervalViewModel.cs" />
     <Compile Include="ViewModels\UserInfoViewModel.cs" />
     <Compile Include="ViewModels\SingInViewModel.cs" />
   </ItemGroup>
@@ -286,6 +307,8 @@
     <Content Include="Views\Shared\_LayoutWithoutFooter.cshtml" />
     <Content Include="Views\Error\HandleExceptions.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Lot\Index.cshtml" />
+    <Content Include="Views\Lot\ChangeLotUpdateInterval.cshtml" />
     <Content Include="Views\Lot\MonitoringPage.cshtml" />
     <Content Include="Views\Filter\RemoveFilter.cshtml" />
     <Content Include="Views\Filter\Create.cshtml" />

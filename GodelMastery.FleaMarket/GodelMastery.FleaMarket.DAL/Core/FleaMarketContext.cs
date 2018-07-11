@@ -7,8 +7,8 @@ namespace GodelMastery.FleaMarket.DAL.Core
 {
     public class FleaMarketContext : IdentityDbContext<ApplicationUser>
     {
-        public FleaMarketContext() :
-            base("FleaMarket")
+        public FleaMarketContext() 
+            : base("FleaMarket")
         {
             Database.SetInitializer(new FleaMarketInitializer());
         }

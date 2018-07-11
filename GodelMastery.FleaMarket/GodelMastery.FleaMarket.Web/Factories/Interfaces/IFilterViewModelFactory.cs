@@ -6,7 +6,7 @@ namespace GodelMastery.FleaMarket.Web.Factories.Interfaces
 {
     public interface IFilterViewModelFactory
     {
-        DashboardViewModel CreateDashboardViewModel(DashboardModel dashboardModel);
+        DashboardViewModel CreateDashboardViewModel(DashboardModel dashboardModel, string errorMessage = null);
         FilterViewModel CreateFilterViewModel(FilterDto filterDto);
         FilterDto CreateFilterDto(FilterViewModel filterViewModel);
     }

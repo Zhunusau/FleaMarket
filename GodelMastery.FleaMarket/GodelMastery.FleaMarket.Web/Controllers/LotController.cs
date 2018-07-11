@@ -1,29 +1,37 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
+using GodelMastery.FleaMarket.Web.Helpers;
 using System.Threading.Tasks;
 
 namespace GodelMastery.FleaMarket.Web.Controllers
 {
-    [Authorize]
     public class LotController : Controller
     {
+        private readonly IChangeLotUpdateIntervalViewModelFactory changeLotUpdateIntervalViewModelFactory;
+        private readonly ISchedulerService schedulerService;
+        private readonly ILotViewModelFactory lotViewModelFactory;
         private readonly ILotService lotService;
         private readonly IFilterService filterService;
         private readonly IFilterViewModelFactory filterViewModelFactory;
-        private readonly ILotViewModelFactory lotViewModelFactory;
 
         public LotController(
+            IChangeLotUpdateIntervalViewModelFactory changeLotUpdateIntervalViewModelFactory,
+            ILotViewModelFactory lotViewModelFactory,
+            ISchedulerService schedulerService,
             ILotService lotService,
             IFilterService filterService,
-            IFilterViewModelFactory filterViewModelFactory,
-            ILotViewModelFactory lotViewModelFactory)
+            IUserService userService,
+            IFilterViewModelFactory filterViewModelFactory)
         {
+            this.changeLotUpdateIntervalViewModelFactory = changeLotUpdateIntervalViewModelFactory ?? throw new ArgumentNullException(nameof(changeLotUpdateIntervalViewModelFactory));
+            this.lotViewModelFactory = lotViewModelFactory ?? throw new ArgumentException(nameof(lotViewModelFactory));
+            this.schedulerService = schedulerService ?? throw new ArgumentNullException(nameof(schedulerService));
             this.lotService = lotService ?? throw new ArgumentNullException(nameof(lotService));
             this.filterService = filterService ?? throw new ArgumentNullException(nameof(filterService));
             this.filterViewModelFactory = filterViewModelFactory ?? throw new ArgumentNullException(nameof(filterViewModelFactory));
-            this.lotViewModelFactory = lotViewModelFactory ?? throw new ArgumentNullException(nameof(lotViewModelFactory));
         }
 
         [HttpGet]
@@ -41,6 +49,20 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         {
             await lotService.UpdateLots(filterId);
             return RedirectToAction("MonitoringPage", new { filterId = filterId });
+        }
+
+        [HttpGet]
+        public ActionResult ChangeLotUpdateInterval()
+        {
+            return PartialView(changeLotUpdateIntervalViewModelFactory.CreateChangeUpdateLotIntervalViewModel());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeLotUpdateInterval(string selectedValue)
+        {
+            var currentLogin = CurrentUser.GetUserName();
+            await schedulerService.ChangeLotUpdateInterval(currentLogin, selectedValue);
+            return RedirectToAction("Dashboard", "Filter");
         }
     }
 }

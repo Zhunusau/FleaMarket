@@ -22,30 +22,30 @@
             <div class="panel-body">
                 @foreach (var filter in Model.LotViewModels)
                 {
-                    <div class="media">
-                        <div class="media-left">
-                            <a href=@filter.Link>
-                                <img src=@filter.Image class="img-rounded media-image">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <strong>
-                                    <a href=@filter.Link>@filter.Name</a>
-                                </strong>
-                                <div class="pull-right">
-                                    <h3><strong>@Html.Price(filter.Price)</strong></h3>
-                                </div>
-                            </h4>
-                            <p>
-                                <h5>@filter.DateOfUpdate.ToString("F")</h5>
-                            </p>
-                            <p>
-                                <h5>@filter.Location</h5>
-                            </p>
-                        </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href=@filter.Link>
+                            <img src=@filter.Image class="img-rounded media-image">
+                        </a>
                     </div>
-                    <hr>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <strong>
+                                <a href=@filter.Link>@filter.Name</a>
+                            </strong>
+                            <div class="pull-right">
+                                <h3><strong>@Html.Price(filter.Price)</strong></h3>
+                            </div>
+                        </h4>
+                        <p>
+                            <h5>@filter.DateOfUpdate.ToString("F")</h5>
+                        </p>
+                        <p>
+                            <h5>@filter.Location</h5>
+                        </p>
+                    </div>
+                </div>
+                <hr>
                 }
             </div>
         </div>

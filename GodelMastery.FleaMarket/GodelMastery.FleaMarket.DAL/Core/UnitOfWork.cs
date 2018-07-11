@@ -22,12 +22,11 @@ namespace GodelMastery.FleaMarket.DAL.Core
         public UnitOfWork(DbContext dbContext, ILifetimeScope lifetimeScope)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-
             this.lifetimeScope = lifetimeScope;
             UserManager = lifetimeScope
             .Resolve<UserManager<ApplicationUser>>(new ResolvedParameter((pi, ctx) => pi.ParameterType == typeof(UserStore<ApplicationUser>),
                 (pi, ctx) => ctx.Resolve<IUserStore<ApplicationUser>>(new TypedParameter(typeof(DbContext), dbContext))));
-            RoleManager =  lifetimeScope
+            RoleManager = lifetimeScope
             .Resolve<RoleManager<ApplicationRole>>(new ResolvedParameter((pi, ctx) => pi.ParameterType == typeof(RoleStore<ApplicationRole>),
                 (pi, ctx) => ctx.Resolve<IRoleStore<ApplicationRole, string>>(new TypedParameter(typeof(DbContext), dbContext))));
         }
@@ -74,7 +73,8 @@ namespace GodelMastery.FleaMarket.DAL.Core
             GC.SuppressFinalize(this);
         }
 
-        private T GetRepository<T>() where T : class
+        private T GetRepository<T>() 
+            where T : class
         {
             T repository = lifetimeScope.Resolve<T>();
             return repository;

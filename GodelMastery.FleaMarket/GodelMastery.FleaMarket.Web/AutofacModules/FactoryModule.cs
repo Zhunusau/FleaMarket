@@ -38,6 +38,11 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
                 .SingleInstance();
 
             builder
+                .RegisterType<ChangeLotUpdateIntervalViewModelFactory>()
+                .As<IChangeLotUpdateIntervalViewModelFactory>()
+                .SingleInstance();
+
+            builder
                 .RegisterType<LotViewModelFactory>()
                 .As<ILotViewModelFactory>()
                 .SingleInstance();

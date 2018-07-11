@@ -14,7 +14,8 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         private readonly IUserViewModelFactory userDtoModelFactory;
         private readonly IAuthenticationManager authenticationManager;
 
-        public AccountController(IAuthenticationService authenticationService, 
+        public AccountController(
+            IAuthenticationService authenticationService, 
             IUserViewModelFactory userDtoModelFactory,
             IAuthenticationManager authenticationManager)
         {
@@ -37,8 +38,8 @@ namespace GodelMastery.FleaMarket.Web.Controllers
                 var operationDetails = await authenticationService.CreateUser(userDtoModelFactory.CreateUserDto(signUpViewModel));
                 if (operationDetails.Succeeded)
                 {
-                    var code = await authenticationService.GenerateEmailConfirmationTokenAsync(signUpViewModel.Email);
-                    var callBack = Url.Action("ConfirmEmail", "Account", new {email = signUpViewModel.Email, code = code }, protocol: Request.Url.Scheme);
+                    var token = await authenticationService.GenerateEmailConfirmationTokenAsync(signUpViewModel.Email);
+                    var callBack = Url.Action("ConfirmEmail", "Account", new {email = signUpViewModel.Email, code = token }, protocol: Request.Url.Scheme);
                     await authenticationService.SendMessageAsync(signUpViewModel.Email, callBack);
                     return RedirectToAction("Index", "Home");
                 }
@@ -81,10 +82,7 @@ namespace GodelMastery.FleaMarket.Web.Controllers
                 else
                 {
                     authenticationManager.SignOut();
-                    authenticationManager.SignIn(new AuthenticationProperties
-                    {
-                        IsPersistent = true
-                    }, claim);
+                    authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
                     return RedirectToAction("Index", "Home");
                 }
             }

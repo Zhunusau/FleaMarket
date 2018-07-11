@@ -10,7 +10,7 @@ namespace GodelMastery.FleaMarket.BL.Services
 {
     public class UserService : BaseService, IUserService
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IUserModelFactory userModelFactory;
 
         public UserService(IUnitOfWork unitOfWork, IUserModelFactory userModelFactory) : base(unitOfWork)
@@ -27,6 +27,17 @@ namespace GodelMastery.FleaMarket.BL.Services
             }
             logger.Info("GetUserInfo {0}", login);
             return userModelFactory.CreateUserDto(applicationUser);
+        }
+
+        public async Task<bool> IsAccountVerified(string login)
+        {
+            logger.Info($"Verification for a verified account with the login {login}");
+            var applicationUser = await unitOfWork.UserManager.FindByEmailAsync(login);
+            if (applicationUser == null)
+            {
+                throw new NullReferenceException(nameof(applicationUser));
+            }
+            return applicationUser.EmailConfirmed;
         }
     }
 }

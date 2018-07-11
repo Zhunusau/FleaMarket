@@ -15,6 +15,7 @@ namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations
                 Email = applicationUser.Email,
                 FirstName = applicationUser.FirstName,
                 LastName = applicationUser.LastName,
+                LotUpdateInterval = applicationUser.LotUpdateInterval
             };
             if (applicationUser.Icon != null)
             {
