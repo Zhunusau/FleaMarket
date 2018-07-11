@@ -262,6 +262,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Filter\Dashboard.css" />
     <Content Include="Content\Error.css" />
+    <Content Include="Content\Help\HelpPage.css" />
     <Content Include="Content\Lot\MonitoringPage.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Filter\Create.css" />
@@ -312,6 +313,7 @@
     <Content Include="Views\Lot\MonitoringPage.cshtml" />
     <Content Include="Views\Filter\RemoveFilter.cshtml" />
     <Content Include="Views\Filter\Create.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

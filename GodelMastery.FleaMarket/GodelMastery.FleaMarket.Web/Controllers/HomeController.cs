@@ -8,5 +8,10 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Help()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Help";
+}
+
+<link href="~/Content/Help/HelpPage.css" rel="stylesheet" />
+
+<div class="container">
+    <h3>Help Page</h3>
+    <p>Our site is designed to help you find lots of different products, track their status and price changes.</p>
+    <p>The site allows the registered user:</p>
+    <ul>
+        <li>Create and store filters for finding lots.</li>
+        <li>Search for lots by selected filter.</li>
+        <li>Store and update information about the selected lots.</li>
+        <li>Receive email notifications about new lots after email confirmation.</li>
+        <li>Set the time interval for receiving notifications independently.</li>
+    </ul>
+    <p>Please register to use the functionality of our site.</p>
+    @Html.ActionLink("Go to registration", "SignUp", "Account", null, new {@class = "btn btn-success", type = "button"})
+</div>
