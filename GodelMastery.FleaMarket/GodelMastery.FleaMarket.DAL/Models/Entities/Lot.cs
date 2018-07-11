@@ -14,7 +14,6 @@ namespace GodelMastery.FleaMarket.DAL.Models.Entities
         public string Image { get; set; }
         public DateTime DateOfFound { get; set; }
         public DateTime DateOfUpdate { get; set; }
-
         public bool Status { get; set; }
 
         public virtual Filter Filter { get; set; }

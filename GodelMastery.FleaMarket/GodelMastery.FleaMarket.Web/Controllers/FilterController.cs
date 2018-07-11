@@ -15,7 +15,10 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         private readonly IFilterViewModelFactory filterViewModelFactory;
         private readonly IFilterService filterService;
 
-        public FilterController(IFilterService filterService, IDashboardService dashboardService, IFilterViewModelFactory filterViewModelFactory)
+        public FilterController(
+            IFilterService filterService, 
+            IDashboardService dashboardService, 
+            IFilterViewModelFactory filterViewModelFactory)
         {
             this.filterService = filterService ?? throw new ArgumentNullException(nameof(filterService));
             this.dashboardService = dashboardService ?? throw new ArgumentNullException(nameof(dashboardService));

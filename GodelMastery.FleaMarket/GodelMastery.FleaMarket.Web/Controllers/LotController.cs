@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using GodelMastery.FleaMarket.Web.Factories.Interfaces;
+using System.Threading.Tasks;
 
 namespace GodelMastery.FleaMarket.Web.Controllers
 {
@@ -33,6 +34,13 @@ namespace GodelMastery.FleaMarket.Web.Controllers
             var monitoringPageViewModel = lotViewModelFactory.CreateMonitoringPageViewModel
                 (lotViewModelFactory.CreateLotViewModels(lotDtos), filterViewModelFactory.CreateFilterViewModel(filterDto), page);
             return View(monitoringPageViewModel);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> UpdateLots(int filterId)
+        {
+            await lotService.UpdateLots(filterId);
+            return RedirectToAction("MonitoringPage", new { filterId = filterId });
         }
     }
 }

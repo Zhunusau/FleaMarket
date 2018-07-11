@@ -14,7 +14,7 @@
             <span>
                 <strong>@Model.FilterViewModel.Content</strong>
             </span>
-            <button class='btn btn-primary pull-right'>Update lots</button>
+            @Html.ActionLink("Update lot", "UpdateLots", "Lot", new { filterId = Model.FilterViewModel.Id}, new { @class = "btn btn-primary pull-right" })
         </h1>
     </div>
     <div class="row">

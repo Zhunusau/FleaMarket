@@ -102,6 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessModels\NewLotDtosModel.cs" />
     <Compile Include="Core\Helpers\ConfigurationSettings\SendMessageConfigModel.cs" />
     <Compile Include="Core\Helpers\ConfigurationSettings\ConfigProvider.cs" />
     <Compile Include="Core\Helpers\ConfigurationSettings\IConfigProvider.cs" />
@@ -112,6 +113,8 @@
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\IMessageContext.cs" />
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\NotificationMessageContext.cs" />
     <Compile Include="Core\Helpers\HtmlParserHelper\IHtmlParserProvider.cs" />
+    <Compile Include="Core\Helpers\LotComparer\LotsComparerToUpdate.cs" />
+    <Compile Include="Core\Helpers\LotComparer\LotsComparerToAddNew.cs" />
     <Compile Include="Core\Helpers\SendVerificationLinkHelper.cs" />
     <Compile Include="Core\ModelFactories\Implementations\DashboardModelFactory.cs" />
     <Compile Include="Core\ModelFactories\Implementations\FilterModelFactory.cs" />

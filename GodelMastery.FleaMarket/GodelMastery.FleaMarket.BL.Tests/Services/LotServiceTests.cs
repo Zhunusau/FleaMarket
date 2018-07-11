@@ -8,6 +8,7 @@ using GodelMastery.FleaMarket.DAL.Interfaces;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Moq;
 using NUnit.Framework;
+using GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper;
 
 namespace GodelMastery.FleaMarket.BL.Tests.Services
 {
@@ -15,6 +16,8 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
     {
         private Mock<IUnitOfWork> unitOfWork;
         private Mock<ILotModelFactory> lotModelFactory;
+        private Mock<IHtmlParserProvider> htmlParserProvider;
+        private Mock<IFilterModelFactory> filterModelFactory;
         private LotService underTest;
 
         [SetUp]
@@ -22,7 +25,13 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
         {
             unitOfWork = new Mock<IUnitOfWork>();
             lotModelFactory = new Mock<ILotModelFactory>();
-            underTest = new LotService(unitOfWork.Object, lotModelFactory.Object);
+            htmlParserProvider = new Mock<IHtmlParserProvider>();
+            filterModelFactory = new Mock<IFilterModelFactory>();
+            underTest = new LotService(
+                unitOfWork.Object, 
+                htmlParserProvider.Object, 
+                lotModelFactory.Object, 
+                filterModelFactory.Object);
         }
 
         [Test]
@@ -47,9 +56,9 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 Id = 1,
                 Content = "SomeContent",
                 FilterName = "SomeName",
-                Lots = new List<Lot> { new Lot { Name = "somelotname", Location = "someCity" }}
+                Lots = new List<Lot> { new Lot { Name = "somelotname", Location = "someCity" } }
             };
-            var expectedResult = new List<LotDto> { new LotDto { Name = "somelotname", Location = "someCity" }};
+            var expectedResult = new List<LotDto> { new LotDto { Name = "somelotname", Location = "someCity" } };
             unitOfWork
                 .Setup(x => x.Filters.GetById(1))
                 .Returns(filter);

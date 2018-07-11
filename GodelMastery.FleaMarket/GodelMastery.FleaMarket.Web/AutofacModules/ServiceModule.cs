@@ -2,6 +2,7 @@
 using GodelMastery.FleaMarket.BL.Core.Helpers.ConfigurationSettings;
 using GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper;
 using GodelMastery.FleaMarket.BL.Interfaces;
+using GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper;
 using GodelMastery.FleaMarket.BL.Services;
 
 namespace GodelMastery.FleaMarket.Web.AutofacModules
@@ -23,6 +24,10 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
             builder
                 .RegisterType<ConfigProvider>()
                 .As<IConfigProvider>()
+                .SingleInstance();
+
+            builder.RegisterType<HtmlParserProvider>()
+                .As<IHtmlParserProvider>()
                 .SingleInstance();
 
             base.Load(builder);
