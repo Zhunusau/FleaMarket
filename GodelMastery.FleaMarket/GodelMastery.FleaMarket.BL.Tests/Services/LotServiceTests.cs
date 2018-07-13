@@ -9,6 +9,8 @@ using GodelMastery.FleaMarket.DAL.Models.Entities;
 using Moq;
 using NUnit.Framework;
 using GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper;
+using System.Threading.Tasks;
+using GodelMastery.FleaMarket.BL.BusinessModels;
 
 namespace GodelMastery.FleaMarket.BL.Tests.Services
 {
@@ -44,7 +46,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Returns<Filter>(null);
 
             //act assert
-            Assert.Throws<ArgumentNullException>(() => underTest.GetLotDtos(incorrectId));
+            Assert.Throws<NullReferenceException>(() => underTest.GetLotDtos(incorrectId));
         }
 
         [Test]
@@ -71,6 +73,60 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
 
             //assert
             Assert.AreEqual(expectedResult.First(), actualResult.First());
+        }
+        [Test]
+        public async Task UpdateLots_When_Exception_Occure_Should_RollBack_Method_Call()
+        {
+            //arrange
+            int id = 1;
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Throws<Exception>();
+
+            //act
+            await underTest.UpdateLots(id);
+
+            //assert
+            unitOfWork.Verify(x => x.RollBack());
+        }
+        [Test]
+        public async Task UpdateLots_When_Filter_Not_Exist_Should_Return_Null()
+        {
+            //arrange
+            int id = 1;
+            Filter expectedResult = null;
+                
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Returns<Filter>(null);
+
+            //act
+            var actualResult = await underTest.UpdateLots(id);
+
+            //assert
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [Test]
+        public async Task UpdateLots_When_Filter_Exist_Should_Return_NewLotDtosModel()
+        {
+            //arrange
+            int id = 1;
+            var currentFilter = new Filter { FilterName = "Filter Name", Content = "Filter Content" };
+            var newLots = new List<Lot>();
+            var newLotsDto = new List<LotDto>();
+            FilterDto currentFilterDto = new FilterDto { FilterName = "Filter Name", Content = "Filter Content" };
+            var expectedResult = new NewLotDtosModel {FilterDto = currentFilterDto, FreshLots = newLotsDto };
+
+            unitOfWork.Setup(x => x.Filters.GetById(id)).Returns(currentFilter);
+            filterModelFactory.Setup(x => x.CreateFilterDto(currentFilter)).Returns(currentFilterDto);
+            htmlParserProvider.Setup(x => x.GetLotsByFilter(It.IsAny<String>()))
+                .Returns(Task.FromResult(newLotsDto));
+            unitOfWork.Setup(x => x.Lots.GetAll).Returns(newLots);
+            lotModelFactory.Setup(x => x.CreateNewLotDtosModel(currentFilterDto, newLots)).Returns(expectedResult);
+
+            //act
+            var actualResult = await underTest.UpdateLots(id);
+
+            //assert
+            Assert.AreEqual(expectedResult, actualResult);
+            htmlParserProvider.Verify(x => x.GetLotsByFilter(currentFilter.Content));
+            unitOfWork.Verify(x => x.SaveChanges());
         }
     }
 }

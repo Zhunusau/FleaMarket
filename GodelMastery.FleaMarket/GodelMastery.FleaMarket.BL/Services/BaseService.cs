@@ -1,4 +1,5 @@
 ﻿using GodelMastery.FleaMarket.DAL.Interfaces;
+using System;
 
 namespace GodelMastery.FleaMarket.BL.Services
 {
@@ -8,7 +9,7 @@ namespace GodelMastery.FleaMarket.BL.Services
 
         protected BaseService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
     }
 }

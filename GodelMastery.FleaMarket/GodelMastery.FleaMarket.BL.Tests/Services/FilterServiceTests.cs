@@ -62,7 +62,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Returns(Task.FromResult<ApplicationUser>(null));
 
             //act assert
-            Assert.ThrowsAsync<ArgumentNullException>(() => underTest.GetFilterDtos(email));
+            Assert.ThrowsAsync<NullReferenceException>(() => underTest.GetFilterDtos(email));
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Returns<Filter>(null);
 
             //act assert
-            Assert.Throws<ArgumentNullException>(() => underTest.GetFilterById(incorrectId));
+            Assert.Throws<NullReferenceException>(() => underTest.GetFilterById(incorrectId));
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace GodelMastery.FleaMarket.BL.Tests.Services
                 .Returns(filter);
             filterModelFactory
                 .Setup(x => x.CreateFilterDto(filter))
-                .Returns(filterDto);
+                .Returns(expectedResult);
 
             //act
             var actualResult = underTest.GetFilterById(1);

@@ -17,10 +17,10 @@ namespace GodelMastery.FleaMarket.BL.Services
 {
     public class LotService : BaseService, ILotService
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-        private IHtmlParserProvider htmlParserProvider;
-        private ILotModelFactory lotModelFactory;
-        private IFilterModelFactory filterModelFactory;
+        private readonly static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly IHtmlParserProvider htmlParserProvider;
+        private readonly ILotModelFactory lotModelFactory;
+        private readonly IFilterModelFactory filterModelFactory;
 
         public LotService(
             IUnitOfWork unitOfWork, 
@@ -28,11 +28,11 @@ namespace GodelMastery.FleaMarket.BL.Services
             ILotModelFactory lotModelFactory,
             IFilterModelFactory filterModelFactory) : base(unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
-            this.htmlParserProvider = htmlParserProvider;
-            this.lotModelFactory = lotModelFactory;
-            this.filterModelFactory = filterModelFactory;
+            this.htmlParserProvider = htmlParserProvider ?? throw new ArgumentNullException(nameof(htmlParserProvider)); ;
+            this.lotModelFactory = lotModelFactory ?? throw new ArgumentNullException(nameof(lotModelFactory)); ;
+            this.filterModelFactory = filterModelFactory ?? throw new ArgumentNullException(nameof(filterModelFactory)); ;
         }
+
         public IEnumerable<LotDto> GetLotDtos(int filterId)
         {
             var filter = unitOfWork.Filters.GetById(filterId);
@@ -43,28 +43,29 @@ namespace GodelMastery.FleaMarket.BL.Services
             logger.Info($"Get a collection of lots by filter id {filterId}");
             return lotModelFactory.CreateLotDtos(filter.Lots);
         }
+
         public async Task<NewLotDtosModel> UpdateLots(int filterId)
         {
             try
             {
-                logger.Info($"Start lots update filter ID: {filterId}");
+                logger.Info($"Operation UpdateLots for filter with id {filterId} was started");
                 var currentFilter = unitOfWork.Filters.GetById(filterId);
                 if (currentFilter != null)
                 {
-                    var lotsFromDB = currentFilter.Lots;
-
                     var currnetFilterDto = filterModelFactory.CreateFilterDto(currentFilter);
 
-                    var lotsDtosFromParser = await htmlParserProvider.GetLotsByFilter(currnetFilterDto.Content);
-                    var lotDtosFromDB = lotModelFactory.CreateLotDtos(lotsFromDB).ToList();
+                    var lotDtosFromParser = await htmlParserProvider.GetLotsByFilter(currnetFilterDto.Content);
 
-                    var newLots = GetNewLots(lotDtosFromDB, lotsDtosFromParser);
-                    var notActualLot = GetNotActualLots(lotDtosFromDB, lotsDtosFromParser);
-                    var toUpdateLots = GetToUpdateLots(lotDtosFromDB, lotsDtosFromParser, lotModelFactory.CreateLotDtos(newLots));
+                    var lotsFromParser = lotModelFactory.CreateLots(lotDtosFromParser);
+                    var lotsFromDB = GetLotsByFilterId(currentFilter.Id);
 
-                    AddNewLots(newLots, currentFilter);
-                    UpdatePrice(toUpdateLots, currentFilter);
-                    DeleteNotActualLots(notActualLot, currentFilter);
+                    var newLots = GetNewLots(lotsFromDB, lotsFromParser);
+                    var notActualLot = GetNotActualLots(lotsFromDB, lotsFromParser);
+                    var toUpdateLots = GetToUpdateLots(lotsFromDB, lotsFromParser, newLots);
+
+                    AddNewLots(newLots, currentFilter.Id);
+                    UpdatePrice(toUpdateLots, currentFilter.Id);
+                    DeleteNotActualLots(notActualLot, currentFilter.Id);
 
                     await unitOfWork.SaveChanges();
 
@@ -76,58 +77,67 @@ namespace GodelMastery.FleaMarket.BL.Services
             catch(Exception e)
             {
                 unitOfWork.RollBack();
-                logger.Error($"Update exception {e.Message}");
+                logger.Error($"Exception occurred during operation UpdateLots for filter with id: {filterId}. Error message: {e.Message}");
             }
             return null;
         }
-        private IEnumerable<Lot> GetNewLots(IEnumerable<LotDto> lotDtosFromDB, IEnumerable<LotDto> lotsDtosFromParser)
+
+        private IEnumerable<Lot> GetNewLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser)
         {
-            var newLotDtos = lotsDtosFromParser.Except(lotDtosFromDB, new LotsComparerToAddNew());
-            var newLots = lotModelFactory.CreateLots(newLotDtos);
+            var newLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToAddNew());
             return newLots;
         }
-        private IEnumerable<Lot> GetNotActualLots(IEnumerable<LotDto> lotDtosFromDB, IEnumerable<LotDto> lotsDtosFromParser)
+
+        private IEnumerable<Lot> GetNotActualLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser)
         {
-            var notActualLotDtos = lotDtosFromDB.Except(lotsDtosFromParser, new LotsComparerToAddNew());
-            var notActualLots = lotModelFactory.CreateLots(notActualLotDtos);
+            var notActualLots = lotsFromDB.Except(lotsFromParser, new LotsComparerToAddNew());
             return notActualLots;
         }
-        private IEnumerable<Lot> GetToUpdateLots(IEnumerable<LotDto> lotDtosFromDB, IEnumerable<LotDto> lotsDtosFromParser, IEnumerable<LotDto> newLotDtos)
+
+        private IEnumerable<Lot> GetToUpdateLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser, IEnumerable<Lot> newLots)
         { 
-            var toUpdateWithNewLots = lotsDtosFromParser.Except(lotDtosFromDB, new LotsComparerToUpdate());
-            var toUpdateLots = toUpdateWithNewLots.Except(newLotDtos, new LotsComparerToAddNew());
-            var notActualLots = lotModelFactory.CreateLots(toUpdateLots);
-            return notActualLots;
+            var toUpdateWithNewLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToUpdate());
+            var toUpdateLots = toUpdateWithNewLots.Except(newLots, new LotsComparerToAddNew());
+            return toUpdateLots;
         }
-        private void AddNewLots(IEnumerable<Lot> newLots,Filter currentFilter)
+
+        private void AddNewLots(IEnumerable<Lot> newLots, int currentFilterId)
         {
             foreach (var lot in newLots)
             {
-                logger.Info($"Add new lot {lot.Id}");
+                logger.Info($"Add new lot with SourceId: {lot.SourceId}");
                 lot.DateOfFound = DateTime.Now;
-                lot.FilterId = currentFilter.Id;
+                lot.FilterId = currentFilterId;
                 unitOfWork.Lots.Create(lot);
             }
         }
-        private void UpdatePrice(IEnumerable<Lot> toUpdateLots, Filter currentFilter)
+
+        private void UpdatePrice(IEnumerable<Lot> toUpdateLots, int filterId)
         {
             foreach (var lot in toUpdateLots)
             {
                 logger.Info($"Update lot {lot.Id}");
-                var lotFromDb = currentFilter.Lots.Where(x => x.SourceId == lot.SourceId).FirstOrDefault();
+                var lotFromDb = unitOfWork.Lots.Where(x => x.Id == lot.Id).FirstOrDefault();
                 lotFromDb.DateOfUpdate = DateTime.Now;
                 lotFromDb.Price = lot.Price;
                 unitOfWork.Lots.Update(lotFromDb);
             }
         }
-        private void DeleteNotActualLots(IEnumerable<Lot> notActualLot, Filter currentFilter)
+
+        private void DeleteNotActualLots(IEnumerable<Lot> notActualLot, int filterId)
         {
             foreach (var lot in notActualLot)
             {
                 logger.Info($"Delete lot {lot.Id}");
-                var lotFromDb = currentFilter.Lots.Where(x => x.SourceId == lot.SourceId).FirstOrDefault();
+                var lotFromDb = unitOfWork.Lots.Where(x => x.Id == lot.Id).FirstOrDefault();
                 unitOfWork.Lots.Delete(lotFromDb);
             }
+        }
+
+        private IEnumerable<Lot> GetLotsByFilterId(int filterId)
+        {
+            var lotsFromDB = unitOfWork.Lots.GetAll.Where(x => x.FilterId == filterId);
+            return lotsFromDB;
         }
     }
 }
