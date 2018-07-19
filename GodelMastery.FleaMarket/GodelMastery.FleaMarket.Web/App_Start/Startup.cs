@@ -21,7 +21,7 @@ namespace GodelMastery.FleaMarket.Web.App_Start
             });
             app.UseAutofacMiddleware(container);
             app.UseAutofacMvc();
-            GlobalConfiguration.Configuration.UseActivator(new ContainerJobActivator(container));
+            GlobalConfiguration.Configuration.UseAutofacActivator(container);
             GlobalConfiguration.Configuration.UseSqlServerStorage("FleaMarketSheduler");
             container.Resolve<ISchedulerService>().InitializeUserSchedulers();
             app.UseHangfireDashboard();

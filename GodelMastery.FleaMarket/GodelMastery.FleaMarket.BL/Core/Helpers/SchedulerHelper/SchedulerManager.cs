@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using GodelMastery.FleaMarket.BL.Interfaces;
 using Hangfire;
 using Hangfire.Storage;
@@ -9,13 +8,7 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.SchedulerHelper
 {
     public class SchedulerManager : ISchedulerManager
     {
-        private readonly IFilterService filterService;
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        public SchedulerManager(IFilterService filterService)
-        {
-            this.filterService = filterService ?? throw new ArgumentNullException(nameof(filterService));
-        }
 
         public void AddOrUpdateLotUpdateJob(string jobId, int userTimeInterval)
         {
@@ -23,13 +16,13 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.SchedulerHelper
             if (recurringJobDto == null)
             {
                 logger.Info($"Add new lot update job with id {jobId} and interval {userTimeInterval} minutes");
-                RecurringJob.AddOrUpdate(jobId, () => filterService.UpdateFilters(jobId), CronHelper.GetCronIntervalByMinutes(userTimeInterval));
+                RecurringJob.AddOrUpdate<IFilterService>(jobId, filterService => filterService.UpdateFilters(jobId), CronHelper.GetCronIntervalByMinutes(userTimeInterval));
             }
             else
             {
                 DeleteJob(recurringJobDto.Id);
                 logger.Info($"Update existing job with id {recurringJobDto.Id} and interval {userTimeInterval} minutes");
-                RecurringJob.AddOrUpdate(recurringJobDto.Id, () => filterService.UpdateFilters(jobId), CronHelper.GetCronIntervalByMinutes(userTimeInterval));
+                RecurringJob.AddOrUpdate<IFilterService>(recurringJobDto.Id, filterService => filterService.UpdateFilters(jobId), CronHelper.GetCronIntervalByMinutes(userTimeInterval));
             }
         }
 
