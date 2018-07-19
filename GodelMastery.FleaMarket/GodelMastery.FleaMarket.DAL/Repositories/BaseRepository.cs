@@ -26,7 +26,7 @@ namespace GodelMastery.FleaMarket.DAL.Repositories
 
         public virtual void Delete(TEntity entity) => objectSet.Remove(entity);
 
-        public virtual TEntity GetById(int id) => objectSet.Find(id);
+        public virtual TEntity GetById<TKey>(TKey id) => objectSet.Find(id);
 
         public virtual TEntity SingleOrDefault(Func<TEntity, bool> predicate) => objectSet.SingleOrDefault(predicate);
 

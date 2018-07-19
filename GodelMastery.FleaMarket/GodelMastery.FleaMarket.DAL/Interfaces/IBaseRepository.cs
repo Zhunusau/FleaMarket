@@ -9,7 +9,7 @@ namespace GodelMastery.FleaMarket.DAL.Interfaces
         where TEntity : class
     {
         IEnumerable<TEntity> GetAll { get; }
-        TEntity GetById(int id);
+        TEntity GetById<TKey>(TKey id);
         void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
