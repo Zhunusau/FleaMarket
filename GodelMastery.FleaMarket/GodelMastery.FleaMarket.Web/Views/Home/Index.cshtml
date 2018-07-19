@@ -18,7 +18,14 @@
             </div>
             <br />
             <div class="col-md-4 col-md-offset-8">
-                @Html.ActionLink("Get Start", "SignIn", "Account", null, new { @class = "btn btn-success btn-lg", type = "button" })
+                @if (Request.IsAuthenticated)
+                {
+                    @Html.ActionLink("Get Start", "Dashboard", "Filter", null, new { @class = "btn btn-success btn-lg", type = "button" })
+                }
+                else
+                {
+                    @Html.ActionLink("Get Start", "SignIn", "Account", null, new { @class = "btn btn-success btn-lg", type = "button" })
+                }
             </div>
         </div>
     </div>
