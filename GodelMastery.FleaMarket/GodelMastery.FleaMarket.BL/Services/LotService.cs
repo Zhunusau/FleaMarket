@@ -56,7 +56,7 @@ namespace GodelMastery.FleaMarket.BL.Services
 
                     var lotDtosFromParser = await htmlParserProvider.GetLotsByFilter(currnetFilterDto.Content);
 
-                    var lotsFromParser = lotModelFactory.CreateLots(lotDtosFromParser);
+                    var lotsFromParser = lotModelFactory.CreateLots(lotDtosFromParser).ToList();
                     var lotsFromDB = GetLotsByFilterId(currentFilter.Id);
 
                     var newLots = GetNewLots(lotsFromDB, lotsFromParser);
@@ -82,26 +82,26 @@ namespace GodelMastery.FleaMarket.BL.Services
             return null;
         }
 
-        private IEnumerable<Lot> GetNewLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser)
+        private List<Lot> GetNewLots(List<Lot> lotsFromDB, List<Lot> lotsFromParser)
         {
             var newLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToAddNew());
-            return newLots;
+            return newLots.ToList();
         }
 
-        private IEnumerable<Lot> GetNotActualLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser)
+        private List<Lot> GetNotActualLots(List<Lot> lotsFromDB, List<Lot> lotsFromParser)
         {
             var notActualLots = lotsFromDB.Except(lotsFromParser, new LotsComparerToAddNew());
-            return notActualLots;
+            return notActualLots.ToList();
         }
 
-        private IEnumerable<Lot> GetToUpdateLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser, IEnumerable<Lot> newLots)
+        private List<Lot> GetToUpdateLots(List<Lot> lotsFromDB, List<Lot> lotsFromParser, List<Lot> newLots)
         { 
             var toUpdateWithNewLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToUpdate());
             var toUpdateLots = toUpdateWithNewLots.Except(newLots, new LotsComparerToAddNew());
-            return toUpdateLots;
+            return toUpdateLots.ToList();
         }
 
-        private void AddNewLots(IEnumerable<Lot> newLots, int currentFilterId)
+        private void AddNewLots(List<Lot> newLots, int currentFilterId)
         {
             foreach (var lot in newLots)
             {
@@ -112,31 +112,31 @@ namespace GodelMastery.FleaMarket.BL.Services
             }
         }
 
-        private void UpdatePrice(IEnumerable<Lot> toUpdateLots, int filterId)
+        private void UpdatePrice(List<Lot> toUpdateLots, int filterId)
         {
             foreach (var lot in toUpdateLots)
             {
                 logger.Info($"Update lot {lot.Id}");
-                var lotFromDb = unitOfWork.Lots.Where(x => x.Id == lot.Id).FirstOrDefault();
+                var lotFromDb = unitOfWork.Lots.SingleOrDefault(x => x.SourceId == lot.SourceId);
                 lotFromDb.DateOfUpdate = DateTime.Now;
                 lotFromDb.Price = lot.Price;
                 unitOfWork.Lots.Update(lotFromDb);
             }
         }
 
-        private void DeleteNotActualLots(IEnumerable<Lot> notActualLot, int filterId)
+        private void DeleteNotActualLots(List<Lot> notActualLot, int filterId)
         {
             foreach (var lot in notActualLot)
             {
                 logger.Info($"Delete lot {lot.Id}");
-                var lotFromDb = unitOfWork.Lots.Where(x => x.Id == lot.Id).FirstOrDefault();
+                var lotFromDb = unitOfWork.Lots.GetById(lot.Id);
                 unitOfWork.Lots.Delete(lotFromDb);
             }
         }
 
-        private IEnumerable<Lot> GetLotsByFilterId(int filterId)
+        private List<Lot> GetLotsByFilterId(int filterId)
         {
-            var lotsFromDB = unitOfWork.Lots.GetAll.Where(x => x.FilterId == filterId);
+            var lotsFromDB = unitOfWork.Lots.Where(x => x.FilterId == filterId).ToList();
             return lotsFromDB;
         }
     }

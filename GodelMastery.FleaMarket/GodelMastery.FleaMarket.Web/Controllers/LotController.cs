@@ -48,7 +48,7 @@ namespace GodelMastery.FleaMarket.Web.Controllers
         public async Task<ActionResult> UpdateLots(int filterId)
         {
             await lotService.UpdateLots(filterId);
-            return RedirectToAction("MonitoringPage", new { filterId = filterId });
+            return RedirectToAction("MonitoringPage", new { filterId });
         }
 
         [HttpGet]
