@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using GodelMastery.FleaMarket.DAL.Models;
 
 namespace GodelMastery.FleaMarket.DAL.Interfaces
 {
-    public interface IBaseRepository<TEntity>
-        where TEntity : class
+    public interface IBaseRepository<TEntity, in TKey> 
+        where TEntity : IBaseEntity<TKey>
     {
         IEnumerable<TEntity> GetAll { get; }
-        TEntity GetById<TKey>(TKey id);
+        TEntity GetById(TKey id);
         void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);

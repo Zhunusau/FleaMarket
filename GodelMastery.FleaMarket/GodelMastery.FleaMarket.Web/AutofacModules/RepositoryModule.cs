@@ -12,7 +12,7 @@ namespace GodelMastery.FleaMarket.Web.AutofacModules
             base.Load(builder);
 
             builder
-                .RegisterGeneric(typeof(BaseRepository<>))
+                .RegisterGeneric(typeof(BaseRepository<,>))
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
