@@ -9,8 +9,8 @@ namespace GodelMastery.FleaMarket.DAL.Interfaces
     {
         RoleManager<ApplicationRole> RoleManager { get; }
         UserManager<ApplicationUser> UserManager { get; }
-        IBaseRepository<Filter> Filters { get; }
-        IBaseRepository<Lot> Lots { get; }
+        IBaseRepository<Filter, int> Filters { get; }
+        IBaseRepository<Lot, int> Lots { get; }
         Task SaveChanges();
         void RollBack();
     }

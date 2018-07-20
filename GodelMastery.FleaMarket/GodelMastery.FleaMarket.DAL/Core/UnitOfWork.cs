@@ -31,9 +31,9 @@ namespace GodelMastery.FleaMarket.DAL.Core
                 (pi, ctx) => ctx.Resolve<IRoleStore<ApplicationRole, string>>(new TypedParameter(typeof(DbContext), dbContext))));
         }
 
-        public IBaseRepository<Filter> Filters => GetRepository<IBaseRepository<Filter>>();
+        public IBaseRepository<Filter,int> Filters => GetRepository<IBaseRepository<Filter,int>>();
 
-        public IBaseRepository<Lot> Lots => GetRepository<IBaseRepository<Lot>>();
+        public IBaseRepository<Lot, int> Lots => GetRepository<IBaseRepository<Lot, int>>();
 
         public async Task SaveChanges() => await dbContext.SaveChangesAsync();
 
