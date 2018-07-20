@@ -48,7 +48,7 @@ namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations
 
         public IEnumerable<LotDto> CreateLotDtos(IEnumerable<Lot> lots)
         {
-            return lots.Select(x => CreateLotDto(x)).ToList();
+            return lots.Select(x => CreateLotDto(x));
         }
 
         public IEnumerable<Lot> CreateLots(IEnumerable<LotDto> lotDtos)

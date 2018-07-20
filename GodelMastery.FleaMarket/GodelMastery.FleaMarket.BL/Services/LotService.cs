@@ -117,7 +117,7 @@ namespace GodelMastery.FleaMarket.BL.Services
             foreach (var lot in toUpdateLots)
             {
                 logger.Info($"Update lot {lot.Id}");
-                var lotFromDb = unitOfWork.Lots.Where(x => x.SourceId == lot.SourceId).FirstOrDefault();
+                var lotFromDb = unitOfWork.Lots.SingleOrDefault(x => x.SourceId == lot.SourceId);
                 lotFromDb.DateOfUpdate = DateTime.Now;
                 lotFromDb.Price = lot.Price;
                 unitOfWork.Lots.Update(lotFromDb);
