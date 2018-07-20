@@ -56,8 +56,8 @@ namespace GodelMastery.FleaMarket.BL.Services
 
                     var lotDtosFromParser = await htmlParserProvider.GetLotsByFilter(currnetFilterDto.Content);
 
-                    var lotsFromParser = lotModelFactory.CreateLots(lotDtosFromParser);
-                    var lotsFromDB = GetLotsByFilterId(currentFilter.Id);
+                    var lotsFromParser = lotModelFactory.CreateLots(lotDtosFromParser).ToList();
+                    var lotsFromDB = GetLotsByFilterId(currentFilter.Id).ToList();
 
                     var newLots = GetNewLots(lotsFromDB, lotsFromParser);
                     var notActualLot = GetNotActualLots(lotsFromDB, lotsFromParser);
@@ -84,20 +84,20 @@ namespace GodelMastery.FleaMarket.BL.Services
 
         private IEnumerable<Lot> GetNewLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser)
         {
-            var newLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToAddNew());
+            var newLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToAddNew()).ToList();
             return newLots;
         }
 
         private IEnumerable<Lot> GetNotActualLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser)
         {
-            var notActualLots = lotsFromDB.Except(lotsFromParser, new LotsComparerToAddNew());
+            var notActualLots = lotsFromDB.Except(lotsFromParser, new LotsComparerToAddNew()).ToList();
             return notActualLots;
         }
 
         private IEnumerable<Lot> GetToUpdateLots(IEnumerable<Lot> lotsFromDB, IEnumerable<Lot> lotsFromParser, IEnumerable<Lot> newLots)
         { 
-            var toUpdateWithNewLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToUpdate());
-            var toUpdateLots = toUpdateWithNewLots.Except(newLots, new LotsComparerToAddNew());
+            var toUpdateWithNewLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToUpdate()).ToList();
+            var toUpdateLots = toUpdateWithNewLots.Except(newLots, new LotsComparerToAddNew()).ToList();
             return toUpdateLots;
         }
 
