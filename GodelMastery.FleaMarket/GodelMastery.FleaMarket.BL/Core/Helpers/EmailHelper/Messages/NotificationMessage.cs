@@ -19,19 +19,16 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper.Messages
             }
             var linkBuilder = new StringBuilder();
             linkBuilder.Append("We found fresh lots for you\n");
-            for (int i = 0; i < notificationMessageContext.newLotDtosModels.Count(); i++)
+            foreach (var filter in notificationMessageContext.newLotDtosModels.Select(x => x.FilterDto))
             {
-                foreach (var filter in notificationMessageContext.newLotDtosModels.Select(x => x.FilterDto))
+                linkBuilder.Append($"<ul> <strong><h4>{filter.FilterName}</h4></strong>");
+                foreach (var freshLot in notificationMessageContext.newLotDtosModels.SelectMany(x => x.FreshLots).Where(x => x.FilterId == filter.Id))
                 {
-                    linkBuilder.Append($"<ul> <strong><h4>{filter.FilterName}</h4></strong>");
-                    foreach (var freshLot in notificationMessageContext.newLotDtosModels.SelectMany(x => x.FreshLots).Where(x => x.FilterId.Equals(filter.Id)))
-                    {
-                        linkBuilder.Append("<li>");
-                        linkBuilder.Append($"{freshLot.Name} - <a href={freshLot.Link}>Link</a>\n");
-                        linkBuilder.Append("</li>");
-                    }
-                    linkBuilder.Append("</ul>");
+                    linkBuilder.Append("<li>");
+                    linkBuilder.Append($"{freshLot.Name} - <a href={freshLot.Link}>Link</a>\n");
+                    linkBuilder.Append("</li>");
                 }
+                linkBuilder.Append("</ul>");
             }
             return linkBuilder.ToString();
         }
