@@ -126,6 +126,7 @@
     <Compile Include="Core\Helpers\EmailHelper\IEmailProvider.cs" />
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\IMessageContext.cs" />
     <Compile Include="Core\Helpers\EmailHelper\MessageContexts\NotificationMessageContext.cs" />
+    <Compile Include="Core\Helpers\ExtentionsMethods\ListExtentions.cs" />
     <Compile Include="Core\Helpers\HtmlParserHelper\IHtmlParserProvider.cs" />
     <Compile Include="Core\Helpers\SchedulerHelper\CronHelper.cs" />
     <Compile Include="Core\Helpers\SchedulerHelper\ISchedulerManager.cs" />

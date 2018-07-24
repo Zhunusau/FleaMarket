@@ -12,6 +12,7 @@ using GodelMastery.FleaMarket.BL.Core.ModelFactories.Interfaces;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using NLog;
 using GodelMastery.FleaMarket.BL.BusinessModels;
+using GodelMastery.FleaMarket.BL.Core.Helpers.ExtentionsMethods;
 
 namespace GodelMastery.FleaMarket.BL.Services
 {
@@ -84,20 +85,20 @@ namespace GodelMastery.FleaMarket.BL.Services
 
         private List<Lot> GetNewLots(List<Lot> lotsFromDB, List<Lot> lotsFromParser)
         {
-            var newLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToAddNew());
+            var newLots = lotsFromParser.Except<Lot, LotsComparerToAddNew>(lotsFromDB);
             return newLots.ToList();
         }
 
         private List<Lot> GetNotActualLots(List<Lot> lotsFromDB, List<Lot> lotsFromParser)
         {
-            var notActualLots = lotsFromDB.Except(lotsFromParser, new LotsComparerToAddNew());
+            var notActualLots = lotsFromDB.Except<Lot, LotsComparerToAddNew>(lotsFromParser);
             return notActualLots.ToList();
         }
 
         private List<Lot> GetToUpdateLots(List<Lot> lotsFromDB, List<Lot> lotsFromParser, List<Lot> newLots)
         { 
-            var toUpdateWithNewLots = lotsFromParser.Except(lotsFromDB, new LotsComparerToUpdate());
-            var toUpdateLots = toUpdateWithNewLots.Except(newLots, new LotsComparerToAddNew());
+            var toUpdateWithNewLots = lotsFromParser.Except<Lot, LotsComparerToUpdate>(lotsFromDB);
+            var toUpdateLots = toUpdateWithNewLots.Except<Lot, LotsComparerToAddNew>(newLots);
             return toUpdateLots.ToList();
         }
 
