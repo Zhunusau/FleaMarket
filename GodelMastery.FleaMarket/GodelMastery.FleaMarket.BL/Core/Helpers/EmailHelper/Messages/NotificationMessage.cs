@@ -22,7 +22,7 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.EmailHelper.Messages
             foreach (var filter in notificationMessageContext.newLotDtosModels.Select(x => x.FilterDto))
             {
                 linkBuilder.Append($"<ul> <strong><h4>{filter.FilterName}</h4></strong>");
-                foreach (var freshLot in notificationMessageContext.newLotDtosModels.SelectMany(x => x.FreshLots).Where(x => x.FilterId.Equals(filter.Id)))
+                foreach (var freshLot in notificationMessageContext.newLotDtosModels.SelectMany(x => x.FreshLots).Where(x => x.FilterId == filter.Id))
                 {
                     linkBuilder.Append("<li>");
                     linkBuilder.Append($"{freshLot.Name} - <a href={freshLot.Link}>Link</a>\n");
