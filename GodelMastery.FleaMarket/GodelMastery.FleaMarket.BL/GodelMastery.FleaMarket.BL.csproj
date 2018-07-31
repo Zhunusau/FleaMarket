@@ -169,6 +169,10 @@
     <Compile Include="Core\Helpers\HtmlParserHelper\HtmlParserProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GodelMastery.FleaMarket.Ayby\GodelMastery.FleaMarket.Ayby.csproj">
+      <Project>{0fdc7ed4-0df3-4bfe-9b96-999affb529f4}</Project>
+      <Name>GodelMastery.FleaMarket.Ayby</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GodelMastery.FleaMarket.DAL\GodelMastery.FleaMarket.DAL.csproj">
       <Project>{F0E948F2-92AD-4429-803C-DAFD6F361912}</Project>
       <Name>GodelMastery.FleaMarket.DAL</Name>

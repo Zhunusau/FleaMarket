@@ -22,7 +22,7 @@ namespace GodelMastery.FleaMarket.HtmlParser
             {
                 var htmlPages = new List<T>();
                 //Can use while(true), however it will be very long
-                for (var page = 1; page <= 5; page++)
+                for (var page = 1; page <= 3; page++)
                 {
                     var source = await htmlLoader.GetSourceByPageId(page);
                     var domParser = new AngleSharp.Parser.Html.HtmlParser();

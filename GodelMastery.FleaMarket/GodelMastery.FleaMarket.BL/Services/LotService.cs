@@ -18,7 +18,7 @@ namespace GodelMastery.FleaMarket.BL.Services
 {
     public class LotService : BaseService, ILotService
     {
-        private readonly static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IHtmlParserProvider htmlParserProvider;
         private readonly ILotModelFactory lotModelFactory;
         private readonly IFilterModelFactory filterModelFactory;

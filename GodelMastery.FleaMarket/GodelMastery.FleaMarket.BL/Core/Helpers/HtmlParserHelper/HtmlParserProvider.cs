@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.Kufar;
+using GodelMastery.FleaMarket.Ayby;
 using GodelMastery.FleaMarket.HtmlParser;
 using NLog;
+using NLog.LayoutRenderers;
 
 namespace GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper
 {
@@ -18,7 +20,8 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper
             try
             {
                 logger.Info($"Started HtmlParserProvider with filter content \"{filterContent}\"");
-                var parser = new HtmlParser<List<KufarHtmlLot>>(new KufarParser(), new KufarSettings(filterContent));
+                //var parser = new HtmlParser<List<KufarHtmlLot>>(new KufarParser(), new KufarSettings(filterContent));
+                var parser = new HtmlParser<List<AyHtmlLot>>(new AyParser(), new AySettings(filterContent));
                 var htmlPages = await parser.GetHtmlPages();
                 var lots = htmlPages.SelectMany(x => x.Select(
                     lot => new LotDto
@@ -27,8 +30,8 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper
                         Link = lot.Link,
                         Image = lot.Image,
                         Location = lot.Location,
+                        SourceId = lot.SourceId,
                         Price = Convert.ToDecimal(lot.Price),
-                        SourceId = Convert.ToInt32(lot.SourceId),
                         DateOfUpdate = Convert.ToDateTime(lot.DateOfUpdate)
                     })).ToList();
                 return lots;
