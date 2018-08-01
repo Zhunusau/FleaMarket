@@ -1,8 +1,6 @@
-﻿using GodelMastery.FleaMarket.HtmlParserInterfaces;
-
-namespace GodelMastery.FleaMarket.Ayby
+﻿namespace GodelMastery.FleaMarket.HtmlParserInterfaces
 {
-    public class AyHtmlLot : IHtmlLot
+    public class HtmlLot : IHtmlLot
     {
         public string SourceId { get; set; }
         public string Name { get; set; }

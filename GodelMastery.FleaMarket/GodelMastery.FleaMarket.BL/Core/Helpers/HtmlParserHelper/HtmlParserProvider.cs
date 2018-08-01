@@ -6,6 +6,7 @@ using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.Kufar;
 using GodelMastery.FleaMarket.Ayby;
 using GodelMastery.FleaMarket.HtmlParser;
+using GodelMastery.FleaMarket.HtmlParserInterfaces;
 using NLog;
 using NLog.LayoutRenderers;
 
@@ -20,8 +21,8 @@ namespace GodelMastery.FleaMarket.BL.Core.Helpers.HtmlParserHelper
             try
             {
                 logger.Info($"Started HtmlParserProvider with filter content \"{filterContent}\"");
-                //var parser = new HtmlParser<List<KufarHtmlLot>>(new KufarParser(), new KufarSettings(filterContent));
-                var parser = new HtmlParser<List<AyHtmlLot>>(new AyParser(), new AySettings(filterContent));
+                //var parser = new HtmlParser<List<HtmlLot>>(new KufarParser(), new KufarSettings(filterContent));
+                var parser = new HtmlParser<List<HtmlLot>>(new AyParser(), new AySettings(filterContent));
                 var htmlPages = await parser.GetHtmlPages();
                 var lots = htmlPages.SelectMany(x => x.Select(
                     lot => new LotDto

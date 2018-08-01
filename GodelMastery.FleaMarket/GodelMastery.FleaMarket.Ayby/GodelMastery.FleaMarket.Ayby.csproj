@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AyHtmlLot.cs" />
     <Compile Include="AyParser.cs" />
     <Compile Include="AySettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

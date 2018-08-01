@@ -6,75 +6,69 @@ using GodelMastery.FleaMarket.HtmlParserInterfaces;
 
 namespace GodelMastery.FleaMarket.Ayby
 {
-    public class AyParser : IParser<List<AyHtmlLot>>
+    public class AyParser : AbstractParser
     {
-        public List<AyHtmlLot> Parse(IHtmlDocument document)
+        protected override bool GetError(IHtmlDocument document)
         {
-            var lots = new List<AyHtmlLot>();
-
-            var tableLots = GetTableLots(document);
-            foreach (var lot in tableLots)
-            {
-                var sourceId = lot.GetAttribute("data-value");
-                var name = lot.QuerySelectorAll("span")
-                    .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("g-highlight"))?
-                    .TextContent;
-                var imageContainer = lot.QuerySelectorAll("span")
-                    .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__figure"));
-                var image = imageContainer?.QuerySelector("img").Attributes["src"].Value;
-                var link = lot.QuerySelectorAll("a")
-                    .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__link"))?
-                    .Attributes["href"]
-                    .Value;
-
-                lots.Add(new AyHtmlLot
-                {
-                    SourceId = sourceId,
-                    Name = name,
-                    Price = "100",
-                    Location = "Test",
-                    Link = link,
-                    Image = image,
-                    DateOfUpdate = "2018-07-30T15:14:45"
-                });
-            }
-            return lots;
+            return false;
         }
 
-        private static IEnumerable<IElement> GetTableLots(IParentNode document)
+        protected override IEnumerable<IElement> GetLots(IHtmlDocument document)
         {
             var tableLots = document.QuerySelectorAll("li")
                 .Where(item => item.ClassName != null && item.ClassName.Equals("viewer-type-grid__li "));
             return tableLots;
         }
 
-        //private static string GetSourceId(IElement lot)
-        //{
-        //    var sourceId = lot?.GetAttribute("data-value");
-        //    return sourceId;
-        //}
+        protected override string GetSourceId(IElement lot)
+        {
+            var sourceId = lot.GetAttribute("data-value");
+            return sourceId;
+        }
 
-        //private static string GetName(IParentNode lot)
-        //{
-        //    var nameContainer = lot.QuerySelector("p .item-type-card__title").QuerySelector("span .g-highlight").TextContent;
-        //    return nameContainer;
-        //}
+        protected override string GetName(IElement lot)
+        {
+            var name = lot.QuerySelectorAll("p")
+                .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__title"))?
+                .TextContent;
+            return name;
+        }
 
-        //private static string GetImage(IParentNode lot)
-        //{
-        //    var imageContainer = lot.QuerySelectorAll("span")
-        //        .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__figure"));
-        //    var image = imageContainer?.QuerySelector("img").Attributes["src"].Value;
-        //    return image;
-        //}
+        protected override string GetImage(IElement lot)
+        {
+            var image = lot.QuerySelector("img").GetAttribute("src");
+            return image;
+        }
 
-        //private static string GetLink(IElement lot)
-        //{
-        //    var link = lot.QuerySelectorAll("a")
-        //        .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__link"))?
-        //        .Attributes["href"]
-        //        .Value;
-        //    return link;
-        //}
+        protected override string GetLink(IElement lot)
+        {
+            var link = lot.QuerySelectorAll("a")
+                .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__link"))?
+                .GetAttribute("href");
+            return link;
+        }
+
+        protected override string GetPrice(IElement lot)
+        {
+            var price = lot.QuerySelectorAll("span")
+                .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("c-hot"))?
+                .QuerySelector("strong")
+                .TextContent
+                .Replace(",00", "");
+            return price;
+        }
+
+        protected override string GetDate(IElement lot)
+        {
+            var date = lot.QuerySelectorAll("small")
+                .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__time"))?
+                .TextContent;
+            return "2018-07-29T16:09:02";
+        }
+
+        protected override string GetLocation(IElement lot)
+        {
+            return "Test";
+        }
     }
 }

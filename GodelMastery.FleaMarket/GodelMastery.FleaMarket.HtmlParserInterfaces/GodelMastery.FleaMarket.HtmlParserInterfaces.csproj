@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractParser.cs" />
+    <Compile Include="HtmlLot.cs" />
     <Compile Include="IHtmlLot.cs" />
     <Compile Include="IHtmlParser.cs" />
     <Compile Include="IParser.cs" />
