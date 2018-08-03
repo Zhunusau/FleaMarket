@@ -13,6 +13,6 @@ namespace GodelMastery.FleaMarket.BL.Dtos
         public string Link { get; set; }
         public string Image { get; set; }
         public DateTime DateOfFound { get; set; }
-        public DateTime DateOfUpdate { get; set; }
+        public string DateOfUpdate { get; set; }
     }
 }

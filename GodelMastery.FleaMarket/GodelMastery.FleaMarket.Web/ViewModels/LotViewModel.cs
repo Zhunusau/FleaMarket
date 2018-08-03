@@ -9,7 +9,7 @@ namespace GodelMastery.FleaMarket.Web.ViewModels
         public string Location { get; set; }
         public string Link { get; set; }
         public string Image { get; set; }
-        public DateTime DateOfUpdate { get; set; }
+        public string DateOfUpdate { get; set; }
         public int FilterId { get; set; }
     }
 }

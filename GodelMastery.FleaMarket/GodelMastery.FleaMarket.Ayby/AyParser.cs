@@ -8,6 +8,7 @@ namespace GodelMastery.FleaMarket.Ayby
 {
     public class AyParser : AbstractParser
     {
+
         protected override bool GetError(IHtmlDocument document)
         {
             return false;
@@ -30,6 +31,7 @@ namespace GodelMastery.FleaMarket.Ayby
         {
             var name = lot.QuerySelectorAll("p")
                 .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__title"))?
+                .QuerySelector("span")
                 .TextContent;
             return name;
         }
@@ -54,7 +56,7 @@ namespace GodelMastery.FleaMarket.Ayby
                 .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("c-hot"))?
                 .QuerySelector("strong")
                 .TextContent
-                .Replace(",00", "");
+                .Remove(3, 3);
             return price;
         }
 
@@ -63,12 +65,15 @@ namespace GodelMastery.FleaMarket.Ayby
             var date = lot.QuerySelectorAll("small")
                 .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__time"))?
                 .TextContent;
-            return "2018-07-29T16:09:02";
+            return date;
         }
 
         protected override string GetLocation(IElement lot)
         {
-            return "Test";
+            var name = lot.QuerySelectorAll("p")
+                .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("item-type-card__title"))?
+                .TextContent;
+            return name;
         }
     }
 }

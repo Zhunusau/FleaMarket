@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.DAL.Interfaces;
@@ -119,7 +118,7 @@ namespace GodelMastery.FleaMarket.BL.Services
             {
                 logger.Info($"Update lot {lot.Id}");
                 var lotFromDb = unitOfWork.Lots.SingleOrDefault(x => x.SourceId == lot.SourceId);
-                lotFromDb.DateOfUpdate = DateTime.Now;
+                lotFromDb.DateOfUpdate = DateTime.Now.ToString("F");
                 lotFromDb.Price = lot.Price;
                 unitOfWork.Lots.Update(lotFromDb);
             }

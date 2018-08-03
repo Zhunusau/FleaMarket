@@ -88,7 +88,7 @@ namespace GodelMastery.FleaMarket.Kufar
         {
             var date = lot.QuerySelectorAll("time")
                 .FirstOrDefault(item => item.ClassName != null && item.ClassName.Contains("list_ads__date"))?
-                .GetAttribute("datetime");
+                .TextContent;
             return date;
         }
     }

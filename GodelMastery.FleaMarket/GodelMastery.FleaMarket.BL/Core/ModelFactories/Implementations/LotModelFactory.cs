@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GodelMastery.FleaMarket.BL.Dtos;
 using GodelMastery.FleaMarket.DAL.Models.Entities;
 using GodelMastery.FleaMarket.BL.BusinessModels;
+using GodelMastery.FleaMarket.HtmlParserInterfaces;
 
 namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations
 {
@@ -43,6 +42,20 @@ namespace GodelMastery.FleaMarket.BL.Core.ModelFactories.Implementations
                 DateOfFound = lot.DateOfFound,
                 DateOfUpdate = lot.DateOfUpdate,
                 Id = lot.Id
+            };
+        }
+
+        public LotDto CreateLotDto(HtmlLot lot)
+        {
+            return new LotDto
+            {
+                Name = lot.Name,
+                Link = lot.Link,
+                Image = lot.Image,
+                Location = lot.Location,
+                SourceId = lot.SourceId,
+                DateOfUpdate = lot.DateOfUpdate,
+                Price = Convert.ToDecimal(lot.Price)
             };
         }
 

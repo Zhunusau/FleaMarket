@@ -20,28 +20,28 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-body">
-                @foreach (var filter in Model.LotViewModels)
+                @foreach (var lot in Model.LotViewModels)
                 {
                 <div class="media">
                     <div class="media-left">
-                        <a href=@filter.Link>
-                            <img src=@filter.Image class="img-rounded media-image">
+                        <a href=@lot.Link>
+                            <img src=@lot.Image class="img-rounded media-image">
                         </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">
                             <strong>
-                                <a href=@filter.Link>@filter.Name</a>
+                                <a href=@lot.Link>@lot.Name</a>
                             </strong>
                             <div class="pull-right">
-                                <h3><strong>@Html.Price(filter.Price)</strong></h3>
+                                <h3><strong>@Html.Price(lot.Price)</strong></h3>
                             </div>
                         </h4>
                         <p>
-                            <h5>@filter.DateOfUpdate.ToString("F")</h5>
+                            <h5>@lot.DateOfUpdate</h5>
                         </p>
                         <p>
-                            <h5>@filter.Location</h5>
+                            <h5>@lot.Location</h5>
                         </p>
                     </div>
                 </div>

@@ -13,7 +13,7 @@ namespace GodelMastery.FleaMarket.DAL.Models.Entities
         public string Link { get; set; }
         public string Image { get; set; }
         public DateTime DateOfFound { get; set; }
-        public DateTime DateOfUpdate { get; set; }
+        public string DateOfUpdate { get; set; }
         public bool Status { get; set; }
 
         public virtual Filter Filter { get; set; }
