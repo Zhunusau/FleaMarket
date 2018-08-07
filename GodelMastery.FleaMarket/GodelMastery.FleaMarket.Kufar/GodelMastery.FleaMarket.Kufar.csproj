@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="KufarParser.cs" />
     <Compile Include="KufarSettings.cs" />
-    <Compile Include="KufarHtmlLot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
